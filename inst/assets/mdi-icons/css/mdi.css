@@ -1,0 +1,20 @@
+
+.mdi{
+  line-height:0;
+  vertical-align: -.125em;
+}
+.mdi-xs{
+ font-size:10px;
+}
+.mdi-sm{
+ font-size:12px;
+}
+.mdi-md{
+ font-size:16px;
+}
+.mdi-lg{
+ font-size:20px;
+}
+.mdi-xl{
+ font-size:24px;
+}

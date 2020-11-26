@@ -1,0 +1,74 @@
+
+.main-menu{
+
+
+  text-align: center;
+  align-content: center;
+}
+
+.navbar-dark .menu-item{
+ color: #fff;
+ font-weight:400;
+}
+.icon-tool-bar .menu-item {
+     font-family: Helvetica,Tahoma;
+    color: rgba(0,0,0,.7);
+    font-size:16px;
+
+
+    cursor: pointer;
+    text-align: center;
+    align-content: center;
+    border:none;
+    background-color:transparent;
+     border-radius:2px;
+}
+.icon-tool-bar .btn-group-toogle{
+   margin:.75rem;
+}
+.icon-tool-bar div .menu-item:focus  {
+
+    box-shadow:none;
+    border:1px solid rgba(0,0,0,.1);
+
+}
+
+.icon-tool-bar div .menu-item.active  {
+     border-radius:2px;
+     color:#f23d29;
+     transition: color .2s ease-out,box-shadow .2s ease-out;
+     box-shadow: inset 0 0 0 0 transparent;
+
+}
+
+
+
+.icon-tool-bar .menu-item:hover{
+  background-color: rgba(0,0,0,.2);
+  transition: background-color .2s ease-out;
+}
+.icon-tool-bar .separator {
+    height: 50%;
+    width: 1px;
+    background: rgba(0,0,0,.2);
+    align-self:center;
+    margin:0 5px;
+
+}
+
+ .menu-text{
+  padding-top: 2.5px;
+   padding-right: 4px;
+    padding-left: 4px;
+     padding-bottom: 2.5px;
+
+ }
+
+
+  .menu-text:hover {
+  background-color: rgba(0,0,0,.2);
+  transition: background-color .2s ease-out;
+    }
+
+
+
