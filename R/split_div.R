@@ -45,8 +45,7 @@ split_div=function(...,
                     onDragStart=NULL, 	#JS Function 		Callback on drag start.
                     onDragEnd=NULL 	#JS Function 		Callback on drag end.
 ){
-  fn_description("Create a div with resizable rows or columns")
-  fn_returns("html")
+
   innerHTML<-list(...)
 
   if(is.null(inputId))inputId=paste0('sp-js',create_unique_id(3))

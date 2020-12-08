@@ -6,6 +6,7 @@
 #' @import htmltools
 #' @import checkmate
 #' @import rlang
+#' @import sUtils
 #' @importFrom jsonlite toJSON
 #' @importFrom shinyWidgets pickerInput pickerOptions
 #' @export
@@ -39,10 +40,7 @@ display <- function(tag) {
   }
   tag
 }
-#' @export
-drop_nulls <- function(x){
-x[!sapply(x, is.null)]
-}
+
 #' @export
 menu_divider=function(type){
   assert_choice(type,c("-","|"))

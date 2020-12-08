@@ -12,8 +12,7 @@
 #'
 #' @export
 updateSortableDiv<- function(inputId,...,content=NULL,order = NULL,append=NULL,clear=FALSE,session = getDefaultReactiveDomain()) {
-  fn_description("Update a sortable div")
-  fn_returns("NULL")
+
   options=list(...)
   assert_subset(names(options),choices=fn_fmls_names(assert_sortable_options))
   assert_sortable_options(...)

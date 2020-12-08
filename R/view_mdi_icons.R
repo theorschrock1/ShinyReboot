@@ -10,8 +10,7 @@
 
 #' @export
 view_mdi_icons=function(icon_names,size=25){
-    fn_description("Search and view the material icon list")
-    fn_returns("[NULL]")
+
     assert_character(icon_names,len = 1)
     icon_names<- search_mdi_icons(icon_names)
     inner<- glue("<div><span class='{icon_names} p-1 mr-3'></span>{icon_names}</div>")%sep%""
