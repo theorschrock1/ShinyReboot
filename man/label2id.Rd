@@ -10,11 +10,11 @@ label2id(x)
 \item{x}{[character]}
 }
 \value{
-\code{label2id}: tolower(str_replace_all([character(1)],'\s','_')
+\code{label2id}: tolower(str_replace_all([character(1)],' ','_')
 }
 \description{
 Turn a html label into an shiny input id.
 }
 \examples{
- label2id('Open File') 
+ label2id('Open File')
 }
