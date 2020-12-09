@@ -16,7 +16,8 @@ Imports:
     htmltools,
     checkmate,
     rlang,
-    jsonlite
+    jsonlite,
+    shinyWidgets
 RoxygenNote: 7.1.1
 Suggests: 
     testthat
