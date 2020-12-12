@@ -10,6 +10,7 @@
 #' @importFrom shinyWidgets pickerInput pickerOptions
 #' @import data.table
 #' @import R6
+#' @import openssl
 
 #' @export
 undisplay <- function(tag) {

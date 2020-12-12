@@ -19,7 +19,8 @@ Imports:
     jsonlite,
     shinyWidgets,
     data.table,
-    R6
+    R6,
+    openssl
 RoxygenNote: 7.1.1
 Suggests: 
     testthat
