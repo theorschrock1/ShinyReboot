@@ -40,7 +40,7 @@ authorize_user <- function(id, user = NULL, pw = NULL, path = "udb.rds",
         observe({
             req(udb())
             if (is.null(user) | is.null(pw)) {
-                insertUI(selector = "body > div.container-fluid",
+            insertUI(selector = "body > div.container-fluid",
                   ui = authorize_ui(id), where = "beforeEnd")
                 vals$loginUI = TRUE
             } else {
@@ -61,10 +61,14 @@ authorize_user <- function(id, user = NULL, pw = NULL, path = "udb.rds",
             vals$res = udb()$enter(input$auth_email, input$auth_pw)
         })
         observeEvent(vals$res, {
-            req(vals$res)
-            if (!isTRUE(vals$res) && isTRUE(vals$login)) {
-                addClass(id = "auth_email", "is-invalid")
-                addClass(id = "auth_pw", "is-invalid")
+            # print("sdfas")
+            # print(vals$res)
+            # print(!isTRUE(vals$res))
+            # print(isTRUE(vals$login))
+            if (!isTRUE(vals$res) && isTRUE(vals$loginUI)) {
+
+                shinyjs::addClass(id = "auth_email", "is-invalid")
+                shinyjs::addClass(id = "auth_pw", "is-invalid")
                 vals$is_invalid = TRUE
             }
             if (isTRUE(vals$res)) {
@@ -77,8 +81,8 @@ authorize_user <- function(id, user = NULL, pw = NULL, path = "udb.rds",
         observe({
             req(vals$loginUI)
             if (input$auth_pw == "" && vals$is_invalid) {
-                removeClass(id = "auth_email", "is-invalid")
-                removeClass(id = "auth_pw", "is-invalid")
+                shinyjs::removeClass(id = "auth_email", "is-invalid")
+                shinyjs::removeClass(id = "auth_pw", "is-invalid")
                 vals$is_invalid = FALSE
             }
         })
