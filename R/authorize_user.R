@@ -139,6 +139,6 @@ authorize_ui <- function(id) {
                "2020")
     )
     out<-attachDependencies( signInTag,html_dependency_ShinySignIn() )
-    tagList(useShinyjs(),out)
+    tagList(shinyjs::useShinyjs(),out)
 }
 
