@@ -10,6 +10,17 @@ html_dependency_setShinyInput <- function() {
   )
 }
 #' @export
+html_dependency_ShinySignIn <- function() {
+  htmltools::htmlDependency(
+    name = "signin",
+    version = packageVersion("ShinyReboot"),
+    src = "assets/signin",
+    package = "ShinyReboot",
+    stylesheet ="signin.css",
+    all_files = FALSE
+  )
+}
+#' @export
 html_dependency_picker_page_btn <- function() {
   htmlDependency(
     name = "select_picker_pagination",

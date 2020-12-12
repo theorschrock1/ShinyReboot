@@ -1,12 +1,12 @@
 #' Authorize app access.
 
 #' @name authorize_user
-#' @param id  \code{[string]}
-#' @param user  \code{[string]}  NULL is ok.  Defaults to \code{NULL}
-#' @param pw  \code{[string]}  NULL is ok.  Defaults to \code{NULL}
-#' @param path  \code{[file]}  Defaults to \code{'udb.rds'}
-#' @param app_ui  \code{[function]}  NULL is ok.  Defaults to \code{NULL}
-#' @return \code{authorize_user}: \code{[character(1)]}
+#' @param id  \code{[string]} a unqiue id for the module
+#' @param user  \code{[string]} a user name to bypass login page. NULL is ok.  Defaults to \code{NULL}
+#' @param pw  \code{[string]} a password to bypass login page. NULL is ok.  Defaults to \code{NULL}
+#' @param path  \code{[file]}  path to the user database. Defaults to \code{'udb.rds'}
+#' @param app_ui  \code{[function]} a function to generate the UI if login is sucessful. NULL is ok.  Defaults to \code{NULL}
+#' @return \code{authorize_user}: \code{[character(1)|FALSE]} returns the username if the log in was successful. Otherwise \code{FALSE}.
 #' @examples
 
 #'  if (interactive()) {
@@ -26,7 +26,7 @@
 #'  shinyApp(ui, server)
 #'  }
 #' @export
-authorize_user <- function(id, user = NULL, pw = NULL, path = "udb.rds", 
+authorize_user <- function(id, user = NULL, pw = NULL, path = "udb.rds",
     app_ui = NULL) {
     # Authorize app access
     assert_string(id)
@@ -40,7 +40,7 @@ authorize_user <- function(id, user = NULL, pw = NULL, path = "udb.rds",
         observe({
             req(udb())
             if (is.null(user) | is.null(pw)) {
-                insertUI(selector = "body > div.container-fluid", 
+                insertUI(selector = "body > div.container-fluid",
                   ui = authorize_ui(id), where = "beforeEnd")
                 vals$loginUI = TRUE
             } else {
@@ -69,8 +69,8 @@ authorize_user <- function(id, user = NULL, pw = NULL, path = "udb.rds",
             }
             if (isTRUE(vals$res)) {
                 removeUI(paste0("#", ns("signin")))
-                if (!is.null(app_ui)) 
-                  insertUI(selector = "body > div.container-fluid", 
+                if (!is.null(app_ui))
+                  insertUI(selector = "body > div.container-fluid",
                     ui = app_ui(), where = "beforeEnd")
             }
         })
@@ -83,7 +83,7 @@ authorize_user <- function(id, user = NULL, pw = NULL, path = "udb.rds",
             }
         })
         user_name = reactive({
-            if (isTRUE(vals$loginUI)) 
+            if (isTRUE(vals$loginUI))
                 return(input$auth_email)
             user
         })
@@ -97,3 +97,48 @@ authorize_user <- function(id, user = NULL, pw = NULL, path = "udb.rds",
     })
     # Returns: \code{[character(1)]}
 }
+authorize_ui <- function(id) {
+    #Documentation
+
+    ns <- NS(id)
+
+    signInTag<-tags$form(
+        id=ns('signin'),
+        class = "form-signin",
+        tags$h1(class = "h3 mb-3 font-weight-normal",
+                "Please sign in"),
+        tags$label(`for` = ns("auth_email"), class = "sr-only",
+                   "Email address"),
+        tags$input(
+            type='text',
+            id = ns("auth_email"),
+            class = "form-control",
+            placeholder = "Username",
+            required = "required",
+            autofocus = "autofocus"
+        ),
+        tags$label(`for` =  ns("auth_pw"),
+                   class = "sr-only", "Password"),
+        tags$input(
+            type = "password",
+            id = ns("auth_pw"),
+            class = "form-control",
+            placeholder = "Password",
+            required = "required"
+        ),
+        div(class = "checkbox mb-3", tags$label(
+            tags$input(type = "checkbox",
+                       value = "remember-me"),
+            "Remember me"
+        ),
+        div(id = "validationUP",
+            class = "invalid-feedback", "Invalid username or password")
+        ),
+        actionButton(inputId=ns('submit'),label="Sign in",class = "btn btn-lg btn-primary btn-block",type = "submit"),
+        tags$p(class = "mt-5 mb-3 text-muted",
+               "2020")
+    )
+    out<-attachDependencies( signInTag,html_dependency_ShinySignIn() )
+    tagList(useShinyjs(),out)
+}
+
