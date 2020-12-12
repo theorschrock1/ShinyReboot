@@ -1,3 +1,4 @@
+#' @importFrom R6 R6Class
 #' @export
 enterApp = R6Class(
   'enterApp',
