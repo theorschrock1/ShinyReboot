@@ -32,7 +32,7 @@ authorize_user <- function(id, user = NULL, pw = NULL, path = "udb.rds",
     assert_string(id)
     assert_string(user, null.ok = TRUE)
     assert_string(pw, null.ok = TRUE)
-    assert_file(path, extension = ".rds")
+    assert_file(path, extension = "rds")
     assert_function(app_ui, null.ok = TRUE)
     moduleServer(id, function(input, output, session) {
         ns <- session$ns
