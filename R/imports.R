@@ -1,4 +1,3 @@
-
 #' @import glue
 #' @import stringr
 #' @import shiny
@@ -9,6 +8,8 @@
 #' @import sUtils
 #' @importFrom jsonlite toJSON
 #' @importFrom shinyWidgets pickerInput pickerOptions
+#' @import data.table
+
 #' @export
 undisplay <- function(tag) {
   # if not already hidden
