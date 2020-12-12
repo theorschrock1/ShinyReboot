@@ -1,6 +1,6 @@
 #' @importFrom R6 R6Class
 #' @export
-enterApp = R6Class(
+enterApp =  R6::R6Class(
   'enterApp',
   public = list(
     initialize = function(user='user',pw='pw') {

@@ -7,18 +7,18 @@
 authorize_user(id, user = NULL, pw = NULL, path = "udb.rds", app_ui = NULL)
 }
 \arguments{
-\item{id}{\code{[string]}}
+\item{id}{\code{[string]} a unique id for the module}
 
-\item{user}{\code{[string]}  NULL is ok.  Defaults to \code{NULL}}
+\item{user}{\code{[string]} a user name to bypass login page. NULL is ok.  Defaults to \code{NULL}}
 
-\item{pw}{\code{[string]}  NULL is ok.  Defaults to \code{NULL}}
+\item{pw}{\code{[string]} a password to bypass login page. NULL is ok.  Defaults to \code{NULL}}
 
-\item{path}{\code{[file]}  Defaults to \code{'udb.rds'}}
+\item{path}{\code{[file]}  path to the user database. Defaults to \code{'udb.rds'}}
 
-\item{app_ui}{\code{[function]}  NULL is ok.  Defaults to \code{NULL}}
+\item{app_ui}{\code{[function]} a function to generate the UI if login is sucsessful. NULL is ok.  Defaults to \code{NULL}}
 }
 \value{
-\code{authorize_user}: \code{[character(1)]}
+\code{authorize_user}: \code{[character(1)|FALSE]} returns the username if the log in was successful. Otherwise \code{FALSE}.
 }
 \description{
 Authorize app access.

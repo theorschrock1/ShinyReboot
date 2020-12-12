@@ -1,11 +1,11 @@
 #' Authorize app access.
 
 #' @name authorize_user
-#' @param id  \code{[string]} a unqiue id for the module
+#' @param id  \code{[string]} a unique id for the module
 #' @param user  \code{[string]} a user name to bypass login page. NULL is ok.  Defaults to \code{NULL}
 #' @param pw  \code{[string]} a password to bypass login page. NULL is ok.  Defaults to \code{NULL}
 #' @param path  \code{[file]}  path to the user database. Defaults to \code{'udb.rds'}
-#' @param app_ui  \code{[function]} a function to generate the UI if login is sucessful. NULL is ok.  Defaults to \code{NULL}
+#' @param app_ui  \code{[function]} a function to generate the UI if login is sucsessful. NULL is ok.  Defaults to \code{NULL}
 #' @return \code{authorize_user}: \code{[character(1)|FALSE]} returns the username if the log in was successful. Otherwise \code{FALSE}.
 #' @examples
 
