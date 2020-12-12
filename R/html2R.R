@@ -3,6 +3,7 @@
 #' @name html2R
 #' @param x  [character]  Must have an exact length of 1.
 #' @param try_parsing  [logical]  Must have an exact length of 1.  Defaults to TRUE
+#' @param silent_eval  [logical]  Try evaluating the R code? Must have an exact length of 1.  Defaults to TRUE
 #' @return \code{html2R}: R code
 #' @examples
 
@@ -11,7 +12,7 @@
 #'  html2R(x)
 
 #' @export
-html2R <- function(x, try_parsing = TRUE) {
+html2R <- function(x, try_parsing = TRUE,silent_eval=TRUE) {
     # Generate R code from raw html
     assert_character(x, len = 1)
     assert_logical(try_parsing, len = 1)
@@ -23,16 +24,20 @@ html2R <- function(x, try_parsing = TRUE) {
 
     x <- str_replace_all(x, tags_names %preceding% "[\\s>]", "\\(") %>% unlist()
     x <- str_replace_all(x, "\"" %preceding% ("\\s" %nfollowed_by% "\\>"), ",")
+
     x[grepl('<[^/].*?\\>',x)]<-str_replace_all(x[grepl('<[^/].*?\\>',x)],"[\"\']"%preceding%("\\s"%nfollowed_by%"\\>"),",")
+
 
     x <- str_replace_all(x, "\\<\\/\\w+\\>", "</)") %>% unlist()
     x=x %>% str_split("\\<\\/")%>% unlist() %>% str_trim()
     x=x[x!=""]
+    is_tag=grepl('<[^/].*?\\>',x)
     x[!grepl("<|>",x)&x!=")"]<-paste0('<spantext("',x[!grepl("<|>",x)&x!=")"],'",spantextend)')
     x[grepl(start_with("<input|<img|<hr|<link|<br|<link"), x)] <- str_replace_all(x[grepl(start_with("<input|<img|<hr|<link|<br|<link"),
         x)], "\\/?>", "\\)")
     x[grepl(ends_with("/>"), x)] <- str_replace_all(x[grepl(ends_with("/>"), x)],
         "\\/>", "\\)")
+    x[is_tag]=str_replace_all(x[is_tag],"\",[[:alpha:]-]{1,40}"%preceding%'\\s'%followed_by%"\\)|>|[[:alpha:]-]{1,40}",",")
     x = x %sep% ""
     x
     x <- str_replace_all(x, "<" %nfollowed_by% "div", "<tags$")
@@ -71,6 +76,8 @@ html2R <- function(x, try_parsing = TRUE) {
     }
 
     x=str_remove_all(x,'tags\\$spantext\\(') %>%str_remove_all(',spantextend\\)')
+
+
     emptyAttr=""
     while (!is.na( emptyAttr)) {
         emptyAttr <-    str_extract(x,","%preceding%'\\w{1,40}'%followed_by%"\\)|,")
@@ -87,9 +94,12 @@ html2R <- function(x, try_parsing = TRUE) {
     if (try_parsing == FALSE)
         return(as_glue(x))
     out = try(parse_expr(x), silent = TRUE)
-    if (!is_error(out))
+    if (is_error(out))
+        out<-parse_expr(glue("tagList({x})"))
+    if (silent_eval == FALSE)
         return(out)
-    parse_expr(glue("tagList({x})"))
+    tryeval<-eval(out)
+    out
     # Returns: R code
 }
 

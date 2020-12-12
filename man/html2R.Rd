@@ -4,12 +4,14 @@
 \alias{html2R}
 \title{Generate R code from raw html.}
 \usage{
-html2R(x, try_parsing = TRUE)
+html2R(x, try_parsing = TRUE, silent_eval = TRUE)
 }
 \arguments{
 \item{x}{[character]  Must have an exact length of 1.}
 
 \item{try_parsing}{[logical]  Must have an exact length of 1.  Defaults to TRUE}
+
+\item{silent_eval}{[logical]  Try evaluating the R code? Must have an exact length of 1.  Defaults to TRUE}
 }
 \value{
 \code{html2R}: R code
