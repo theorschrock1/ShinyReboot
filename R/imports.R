@@ -9,6 +9,7 @@
 #' @importFrom jsonlite toJSON
 #' @importFrom shinyWidgets pickerInput pickerOptions
 #' @import data.table
+#' @import R6
 
 #' @export
 undisplay <- function(tag) {
