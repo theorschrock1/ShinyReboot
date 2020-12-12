@@ -65,7 +65,7 @@ select_picker <- function(inputId, selected = NULL, choices, multiple = FALSE,cl
    picker_out=pickerInput(inputId = inputId,label=NULL,choices=choices,multiple = multiple,selected = selected,width = width,inline=FALSE,choicesOpt = list(content=content_fn(choices)),options = options )
   child= picker_out$children[[2]]
     remove_class( child)<-'form-control'
-    print(htmlDependencies(picker_out))
+
     out<-tagList( child,htmlDependencies(picker_out))
     out
 

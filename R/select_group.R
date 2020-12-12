@@ -73,7 +73,7 @@ select_group <- function(..., group_class = NULL,env=caller_env()) {
         x[names(vars)] <- vars
         x
     }, vars = attrs)
-    print(names(env))
+
     eval(expr(div(class = "btn-group select-group", !!!childern)),envir = env)%>% tagAppendAttributes(class = group_class)
     # expr_eval(div(class = "btn-group select-group", !!!childern),env = env) %>% tagAppendAttributes(class = group_class)
     # Returns: HTML

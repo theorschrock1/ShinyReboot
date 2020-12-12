@@ -57,7 +57,7 @@ authorize_user <- function(id, user = NULL, pw = NULL, path = "udb.rds",
         observeEvent(input$submit, {
             req(input$auth_email)
             req(input$auth_pw)
-            print("sds")
+            #print("sds")
             vals$res = udb()$enter(input$auth_email, input$auth_pw)
         })
         observeEvent(vals$res, {
