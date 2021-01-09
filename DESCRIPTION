@@ -1,7 +1,7 @@
 Package: ShinyReboot
 Type: Package
 Title: A shiny UX reboot
-Version: 0.1.1.9031
+Version: 0.1.1.9032
 Author: Theo Schrock
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: More about what it does (maybe more than one line)
@@ -23,7 +23,8 @@ Imports:
     openssl,
     shinyjs,
     shinyAce,
-    zeallot
+    zeallot,
+    scales
 RoxygenNote: 7.1.1
 Suggests: 
     testthat
