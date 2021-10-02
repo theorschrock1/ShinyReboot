@@ -4,9 +4,9 @@
 #' @param ...
 #' @return \code{dropzone}: \code{[html]}
 #' @export
-dropzone <- function(...) {
+dropzone <- function(...,inputId) {
     # Create a html dropzone
-    tag <- div(...) %>% attachDependencies(html_dependency_dropzone(), append = TRUE)
+    tag <- div(id=inputId,...) %>% attachDependencies(html_dependency_dropzone(), append = TRUE)
     tag %>% tagAppendAttributes(class = "dropzone")
     # Returns: \code{[html]}
 }

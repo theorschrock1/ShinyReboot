@@ -9,6 +9,7 @@ update_discrete_variable_pal(
   var_names,
   var_ids = NULL,
   colors = NULL,
+  palette = NULL,
   session = getDefaultReactiveDomain()
 )
 }

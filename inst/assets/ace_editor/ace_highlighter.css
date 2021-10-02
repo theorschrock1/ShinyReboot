@@ -1,0 +1,39 @@
+.var_invalid{
+text-decoration:underline;
+}
+.ace_dimension{
+color:#212121;
+padding:0 0px;
+background-color:#d2efdc;
+border-radius:2.5px;
+
+}
+.ace_string,.ace-tm .ace_string{
+color:#e8720c ;
+
+}
+.ace_measure{
+color:#212121;
+padding:0 0px;
+background-color:#dbe9ff;
+border-radius:2.5px;
+
+}
+.ace_function {
+color:red !important ;
+
+}
+.ace_ifelse{
+   color: #969696;
+   font-weight:bold;
+}
+
+.code_invalid{
+ border:1px solid red;
+ line-height: normal;
+}
+.code_valid{
+ border:1px solid #09db06;
+}
+
+

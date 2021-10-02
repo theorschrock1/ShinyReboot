@@ -21,3 +21,47 @@ pill_shelf(ids, data, group_name, session = getDefaultReactiveDomain())
 \description{
 Create a variable pill shelf.
 }
+\examples{
+ if(interactive()){
+ sDevTools::clear_env_load_all()
+
+ bs_global_theme()
+ ui <- fluidPage(
+ bs_theme_dependencies(theme = bs_global_get()),
+
+ tags$h1("Pill Shelf"),
+ icon_mdi('pencil'),
+ flexCol(class='w-50 nav-card',
+ add_editable_class(inputId='variable_rename',editable_class = 'pill-label'),
+ uiOutput('measures'),
+ verbatimTextOutput('res')
+
+ ))
+
+ server = function(input, output, session) {
+
+ output$measures<-renderUI({
+
+ self<-dynDT(diamonds)
+ folder_id=self$new_variable_folder('Folder',type='measure')
+ self$add_variable_to_folder(  self$vars[[1]]$var_id,folder_id)
+ self$add_variable_to_folder(  self$vars[[2]]$var_id,folder_id)
+ c(ids,data)\%<-\%self$measure_pills
+
+ pill_card(inputId ="nav_dimensions",
+ type='column',
+ sort_ops = sortable_options(
+ name = 'nav_dimensions',
+ pull = 'clone',
+ put = FALSE,
+ dragClass = 'drag',
+ sort = FALSE
+ ),
+ pill_shelf(ids,data,group_name = "nav_dimensions"))
+ })
+
+ }
+ shinyApp(ui = ui, server = server)
+ }
+
+}

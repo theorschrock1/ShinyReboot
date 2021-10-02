@@ -1,0 +1,86 @@
+.aoColorPicker .color-btn{
+min-height:12px;
+min-width:12px;
+}
+.aoColorPicker .color-btn-top{
+border-top:1px solid #dedede;
+border-right:1px solid  #dedede;
+border-left:1px solid  #dedede;
+}
+
+.aoColorPicker .color-btn-middle{
+border-right:1px solid #dedede;
+border-left:1px solid #dedede;
+}
+
+.aoColorPicker .color-btn-bottom{
+border-right:1px solid #dedede;
+border-left:1px solid #dedede;
+border-bottom:1px solid #dedede;
+}
+
+.aoColorPicker .color-btn-solo{
+border:1px solid #dedede;
+}
+
+.aoColorPicker .color-picked{
+height:20px;
+}
+
+.aoColorPicker .color-label{
+font-size:.625rem;
+}
+
+.aoColorPicker .color-btn:hover,.color-btn.active{
+   box-shadow:  inset 0 0 0 1px #fff;
+}
+
+.aoColorPicker .irs-slider{
+    width:10px;
+    height:10px;
+    top:-5px;
+    border-radius:0px;
+}
+
+.aoColorPicker .irs-line,.irs-bar,.irs-bar-edge{
+    height:4px;
+    top:-2px;
+}
+
+.aoColorPicker .slider-form{
+    height:20px;
+    font-size:.625rem;
+    padding:.1rem;
+    width:100%;
+}
+
+.aoColorPicker .slider-input-wrapper{
+    width:15%;
+}
+
+.aoColorPicker .irs-bar,.aoColorPicker .irs-bar-edge{
+    background-color:#3d3d3d;
+    border-color:#3d3d3d;
+}
+
+.aoColorPicker .irs-bar-edge{
+    width:5px;
+}
+
+.aoColorPicker .irs-min,
+.aoColorPicker .irs-max,
+.aoColorPicker .irs-single,
+.aoColorPicker .irs-to,
+.aoColorPicker .irs-from{
+ display:none;
+}
+
+.aoColorPicker .irs{
+height:5px;
+}
+
+.aoColorPicker .form-group.shiny-input-container{
+  padding:0;
+  margin:0;
+  height:0px;
+ }

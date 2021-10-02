@@ -16,9 +16,11 @@
 #' if(interactive()){
 #'    library("shiny")
 #'    library("ShinyReboot")
-#'    library("bootstraplib")
+#'    library("bslib")
+#'    bs_theme_dependencies(
+#'           theme = bs_global_get())
 #'  bs_global_theme()
-#'  ui <- fluidPage(bs_dependencies(
+#'  ui <- fluidPage(bs_theme_dependencies(
 #'           theme = bs_global_get()),
 #'
 #'                  tags$h1("Split Div"),

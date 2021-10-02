@@ -4,7 +4,17 @@
 \alias{continuous_palette_ui}
 \title{Render a continuous palette ui.}
 \usage{
-continuous_palette_ui(inputId, data_range, selected = "Blues")
+continuous_palette_ui(
+  inputId,
+  data_range,
+  selected = "Blues",
+  stepped = FALSE,
+  n_steps = 4,
+  selected_range = NULL,
+  selected_values = NULL,
+  color_min = NULL,
+  color_max = NULL
+)
 }
 \arguments{
 \item{inputId}{\code{[string]}}

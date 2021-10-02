@@ -50,7 +50,7 @@ gutterFunc=NULL,     #JS Function         Called to create each gutter element}
 
 \item{direction}{[string]     Direction to split: horizontal or vertical. Defaults to 'horizontal'.}
 
-\item{gutterAttrs}{[named_list(htmlTag='character(1)',class=character(1)',text='character(length(innerhtml)-1)')] Useful if gutters should contain labels}
+\item{gutterAttrs}{[named_list(gutterTag='character(1)',class=character(1)',innerHtml='length(splitElements)-1)')] Useful if gutters should contain labels}
 
 \item{elementStyle}{[JS Function] Called to set the style of each element. Defaults to NULL}
 
@@ -69,4 +69,41 @@ gutterFunc=NULL,     #JS Function         Called to create each gutter element}
 }
 \description{
 Create a div with resizable rows or columns.
+}
+\examples{
+ if(interactive()){
+ library("shiny")
+ library("ShinyReboot")
+ library("bslib")
+ bs_global_theme()
+ ui <- fluidPage(bs_theme_dependencies(
+ theme = bs_global_get()),
+
+ tags$h1("Split Div: Custom Gutters"),
+
+ splitCol(inputId='splitCol1',
+ style='height:400px;',
+ gutterSize = 30,
+ div(class='bg-secondary',"div1"),
+ div(class='bg-secondary',"div2"),
+ div(class='bg-secondary',"div3"),
+ gutterAttrs = list(
+ gutterTag = 'div',
+ class = 'my_gutter',
+ innerHtml = list(
+ actionButton(inputId='gr2', label='gutter1',class='btn btn-sm btn-dark'),
+ actionButton(inputId='gr2', label= 'gutter2',class='btn btn-sm btn-dark')
+ )
+ )
+ ),
+
+ verbatimTextOutput(outputId = "res1"))
+ server <- function(input, output, session) {
+
+ output$res1=renderPrint({
+ input$splitCol1
+ })
+ }
+ shinyApp(ui, server)
+ }
 }

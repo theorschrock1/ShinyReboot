@@ -13,8 +13,10 @@ sortable_options(
   delay = NULL,
   delayOnTouchOnly = NULL,
   multiDrag = NULL,
+  deselectOnBody = NULL,
   touchStartThreshold = NULL,
   removeOnSpill = NULL,
+  revertOnSpill = NULL,
   disabled = NULL,
   animation = NULL,
   easing = NULL,
@@ -41,6 +43,7 @@ sortable_options(
   removeCloneOnHide = NULL,
   multiDragKey = NULL,
   emptyInsertThreshold = NULL,
+  setData = NULL,
   onChoose = NULL,
   onUnchoose = NULL,
   onStart = NULL,
@@ -54,7 +57,9 @@ sortable_options(
   onClone = NULL,
   onChange = NULL,
   onSelect = NULL,
-  onDeselect = NULL
+  onDeselect = NULL,
+  onSpill = NULL,
+  customGetValueFn = NULL
 )
 }
 \arguments{
@@ -72,11 +77,19 @@ sortable_options(
 
 \item{delayOnTouchOnly}{[logical] Use Drag delay on mobile/touch devices. Defaults to FALSE.}
 
+\item{multiDrag}{[logical] Enable multidrag.}
+
+\item{deselectOnBody}{[logical] Deselect selected elements when a click occurs outside the sortable? Defaults to TRUE.}
+
 \item{removeOnSpill}{[logical]  Remove item on spill. Defaults to FALSE.}
+
+\item{revertOnSpill}{[logical] Revert item to original sortable on spill.}
 
 \item{disabled}{[logical] Disables the sortable if set to true. Defaults to FALSE.}
 
 \item{animation}{[number] ms, animation speed moving items when sorting, `0` — without animation. Defaults to 150.}
+
+\item{easing}{[string]  Easing for animation. Defaults to null. See https://easings.net/ for examples. Defaults to  "cubic-bezier(1, 0, 0, 1)".}
 
 \item{handle}{[string (css class)] Drag handle selector within list items. Defaults to NULL.}
 
@@ -120,6 +133,8 @@ sortable_options(
 
 \item{multiDragKey}{[string] Key that must be down for items to be selected. Defaults to NULL}
 
+\item{setData}{[JS] 'dataTransfer' object of HTML5 DragEvent.}
+
 \item{onChoose}{[JS] Element is choosen. Defaults to NULL.}
 
 \item{onUnchoose}{[JS] Element is unchosen. Defaults to NULL.}
@@ -146,9 +161,9 @@ sortable_options(
 
 \item{onSelect}{[JS] Called when an element is selected. Defaults to NULL.}
 
-\item{store}{#see Store on sortable.js github.}
+\item{onSpill}{[JS] Called when an elements is spilled outside a sortable. Defaults to NULL.}
 
-\item{easing=}{[string]  Easing for animation. Defaults to null. See https://easings.net/ for examples. Defaults to  "cubic-bezier(1, 0, 0, 1)".}
+\item{store}{#see Store on sortable.js github.}
 
 \item{invertSwap=[logical]}{Will always use inverted swap zone if set to TRUE. Defaults to TRUE}
 

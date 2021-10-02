@@ -4,18 +4,28 @@
 \alias{pill_card}
 \title{Create a pill card div.}
 \usage{
-pill_card(..., inputId, name = NULL, icon, type = "column", sortable = TRUE)
+pill_card(
+  ...,
+  inputId,
+  name = NULL,
+  icon,
+  type = "column",
+  sortable = TRUE,
+  sort_ops = sortable_options()
+)
 }
 \arguments{
-\item{inputId}{[character]  Must have an exact length of 1.}
+\item{inputId}{\code{[string]}  Must have an exact length of 1.}
 
-\item{name}{[character]  NULL is ok.  Defaults to NULL}
+\item{name}{\code{[string]}  NULL is ok.  Defaults to NULL}
 
-\item{icon}{[character]  Must have an exact length of 1.}
+\item{icon}{\code{[string]}  Must have an exact length of 1.}
 
-\item{type}{[choice]  Possible values: c('c', 'row', 'column').  Defaults to 'column'}
+\item{type}{\code{[choice]}  Possible values: \code{c( 'row', 'column')}.  Defaults to 'column'}
 
-\item{sortable}{[logical]  Must have an exact length of 1.  Defaults to TRUE}
+\item{sortable}{\code{[logical]}  Must have an exact length of 1.  Defaults to TRUE}
+
+\item{sort_ops}{\code{[class('sortable_options')]}  Should be the output of a sortable_options call. See \code{?sortable_options} for details.}
 }
 \value{
 \code{pill_card}: [htmlTag(div)]

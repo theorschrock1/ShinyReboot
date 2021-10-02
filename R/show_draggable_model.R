@@ -7,14 +7,15 @@
 #' @param session  \code{[NULL]}  Defaults to \code{getDefaultReactiveDomain()}.
 #' @return \code{show_draggable_model}: invisible(NULL)
 #' @export
-show_draggable_model <- function(inputId = NULL, top = NULL, left = NULL, 
+show_draggable_model <- function(inputId = NULL, top = NULL, left = NULL,
     session = getDefaultReactiveDomain()) {
     # show or hide a draggable model
     assert_string(inputId)
     assert_number(top, null.ok = TRUE)
     assert_number(left, null.ok = TRUE)
-    session$sendInputMessage(inputId, value = drop_nulls(list(show = TRUE, 
-        top = top, left = left)))
+    message <-drop_nulls(list(show = TRUE, top = top, left = left))
+
+    session$sendInputMessage(inputId,message)
     invisible(NULL)
     # Returns: invisible(NULL)
 }

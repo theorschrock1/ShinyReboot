@@ -9,11 +9,11 @@
 #' @return \code{icon_button_group}: [HTML]
 #' @examples
 
-#'  icon_button_group(inputId = c('undo', 'redo', 'save'), icon_name = c('undo', 
+#'  icon_button_group(inputId = c('undo', 'redo', 'save'), icon_name = c('undo',
 
-#'  'redo', 'content-save-outline'), tooltip = c('Undo', 
+#'  'redo', 'content-save-outline'), tooltip = c('Undo',
 
-#'  'Redo', 'Save')) 
+#'  'Redo', 'Save'))
 
 #' @export
 icon_button_group <- function(inputId, icon_name, tooltip, class = "", tooltip_placement = "top") {
@@ -23,9 +23,10 @@ icon_button_group <- function(inputId, icon_name, tooltip, class = "", tooltip_p
     assert_character(tooltip, len = length(inputId))
     assert_character(class)
     assert_character(tooltip_placement, len = 1)
-    inner = expr_glue(tags$button(id = "{inputId}", role = "button", `data-toggle` = "tooltip", title = "{tooltip}", 
-        class = "btn btn-sm menu-item ao-action-button", tags$span(class = "mdi mdi-{icon_name} menu-icons {class}"))) %>% 
+    inner = expr_glue(tags$button(id = "{inputId}", role = "button", `data-toggle` = "tooltip", title = "{tooltip}",
+        class = "btn btn-sm menu-item ao-action-button", tags$span(class = "mdi mdi-{icon_name} menu-icons {class}"))) %>%
         lapply(eval)
-    div(class = "btn-group-toggle", inner)
+   outTag= div(class = "btn-group-toggle",inner)
+   attachDependencies( outTag, html_dependency_material_icons())
     # Returns: [HTML]
 }

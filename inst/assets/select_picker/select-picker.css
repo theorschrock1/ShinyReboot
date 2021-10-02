@@ -1,0 +1,67 @@
+.bootstrap-select .bd-normal{
+   border:1px solid #a8a8a8;
+}
+.bootstrap-select .bd-thin {
+  border:.5px solid #a8a8a8;
+}
+
+.bootstrap-select  .btn-outline-secondary{
+        color:#343a40;
+}
+.btn-outline-secondary:not(:disabled):not(.disabled):active, .btn-outline-secondary.active:not(:disabled):not(.disabled), .show>.btn-outline-secondary.dropdown-toggle, .in>.btn-outline-secondary.dropdown-toggle{
+     background-color:#eeeeee;
+    color:#343a40;
+}
+.bootstrap-select  .btn-outline-secondary:hover,.bootstrap-select  .btn-outline-secondary.show,.bootstrap-select  .btn-outline-secondary:active,.bootstrap-select  .btn-outline-secondary.show:focus,.bootstrap-select  .btn-outline-secondary ~.dropdown-menu .active{
+    background-color:#eeeeee;
+    color:#343a40;
+}
+.bootstrap-select  .btn-outline-secondary ~.dropdown-menu a:focus{
+     background-color:#eeeeee;
+}
+
+
+
+.btn:focus,
+.btn-sm:focus,
+a:focus,
+input:focus,
+select:focus,
+.dropdown-toggle:focus,
+.bootstrap-select .dropdown-toggle:focus{
+    outline: none !important;
+}
+
+.bootstrap-select .btn ~ .dropdown-menu a{
+padding: .0rem .75rem;
+font-size: .875rem;
+}
+.bootstrap-select .btn-sm ~ .dropdown-menu a{
+font-size: .76562rem;
+padding: .0rem 1rem;
+}
+
+.bootstrap-select  .dropdown-menu{
+    border-radius:0;
+    margin:0;
+    padding-top:0;
+}
+
+
+
+.bootstrap-select  .btn-outline-light{
+        color:#ffffff;
+}
+  .btn-outline-light:not(:disabled):not(.disabled):active,   .btn-outline-light.active:not(:disabled):not(.disabled), .show>  .btn-outline-light.dropdown-toggle, .in>  .btn-outline-light.dropdown-toggle{
+     background-color:#eeeeee;
+    color:#343a40;
+}
+.bootstrap-select    .btn-outline-light:hover,.bootstrap-select    .btn-outline-light.show,.bootstrap-select    .btn-outline-light:active,.bootstrap-select    .btn-outline-light.show:focus,.bootstrap-select    .btn-outline-light ~.dropdown-menu .active{
+    background-color:#eeeeee;
+    color:#343a40;
+}
+.bootstrap-select  .btn-outline-light ~.dropdown-menu a:focus{
+     background-color:#eeeeee;
+}
+
+

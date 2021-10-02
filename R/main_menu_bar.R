@@ -15,11 +15,14 @@
 #'  'Dashboard'))
 
 #' @export
-main_menu_bar <- function(..., class = "") {
+main_menu_bar <- function(..., class =NULL) {
     # Create a main menu bar [File,Edit,Code,View,etc]
-    assert_character(class, len = 1)
+    assert_character(class, len = 1,null.ok=TRUE)
 
-    expr_eval(flexRow(class = glue("main-menu {class}"), ...))
+    out<-flexRow(class ="main-menu",...)
+
+    append_class(out)<-NULL
+    attachDependencies(out,html_dependency_main_menu_bar())
     # Returns: [HTML]
 }
 # main_menu_bar <- function(..., class = "") {

@@ -4,7 +4,7 @@
 \alias{dropdown_submenu}
 \title{Create a drop down submenu.}
 \usage{
-dropdown_submenu(..., label, parent = NULL)
+dropdown_submenu(..., label, parent = NULL, id = NULL)
 }
 \arguments{
 \item{label}{[character]  Must have an exact length of 1.}
@@ -18,6 +18,6 @@ dropdown_submenu(..., label, parent = NULL)
 Create a drop down submenu.
 }
 \examples{
- dropdown_submenu(label = 'More Options', dropdown_btn_group(inputIds = letters[1:2], 
- labels = letters[1:2], types = c('action', 'action'))) 
+ dropdown_submenu(label = 'More Options', dropdown_btn_group(inputIds = letters[1:2],
+ labels = letters[1:2], types = c('action', 'action')))
 }

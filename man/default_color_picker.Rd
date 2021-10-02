@@ -6,7 +6,7 @@
 \usage{
 default_color_picker(
   inputId,
-  value = "#ffffff",
+  value = NULL,
   width = "25px",
   height = "25px",
   ...

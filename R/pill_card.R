@@ -2,22 +2,21 @@
 
 #' @name pill_card
 #' @param ...
-#' @param inputId  [character]  Must have an exact length of 1.
-#' @param name  [character]  NULL is ok.  Defaults to NULL
-#' @param icon  [character]  Must have an exact length of 1.
-#' @param type  [choice]  Possible values: c('c', 'row', 'column').  Defaults to 'column'
-#' @param sortable  [logical]  Must have an exact length of 1.  Defaults to TRUE
+#' @param inputId  \code{[string]}  Must have an exact length of 1.
+#' @param name  \code{[string]}  NULL is ok.  Defaults to NULL
+#' @param icon  \code{[string]}  Must have an exact length of 1.
+#' @param type  \code{[choice]}  Possible values: \code{c( 'row', 'column')}.  Defaults to 'column'
+#' @param sortable  \code{[logical]}  Must have an exact length of 1.  Defaults to TRUE
+#' @param sort_ops  \code{[class('sortable_options')]}  Should be the output of a sortable_options call. See \code{?sortable_options} for details.
 #' @return \code{pill_card}: [htmlTag(div)]
 #' @examples
 
 #'  pill_card(pill_item(id = c('sales', 'transactions', 'traffic',
-
 #'  'basket size'), label = c('sales', 'transactions', 'traffic',
-
 #'  'basket size')), inputId = 'one', name = 'Chart', icon = 'test')
 
 #' @export
-pill_card <- function(..., inputId, name = NULL, icon, type = "column", sortable = TRUE) {
+pill_card <- function(..., inputId, name = NULL, icon, type = "column", sortable = TRUE,sort_ops=sortable_options()) {
     # Create a pill card div
     header = NULL
     assert_character(inputId, len = 1)
@@ -29,11 +28,22 @@ pill_card <- function(..., inputId, name = NULL, icon, type = "column", sortable
         header = div(class = "handle", icon_mdi(icon), name)
     }
     if (sortable) {
-        return(div(class = glue("pill-card-{type}"), header, sortable_div(inputId = inputId,
-            class = glue("d-flex flex-{type} flex-fill flex-wrap bg-transparent shelf"),
-            ...)))
-    }
-    div(class = glue("pill-card-{type}"), header, div(class = glue("d-flex flex-{type} flex-wrap bg-transparent shelf"),
+        out = div(
+            class = glue("pill-card-{type}"),
+            header,
+            sortableDiv(
+                inputId = inputId,
+                class = glue("d-flex flex-{type} flex-fill flex-wrap bg-transparent shelf"),
+                options = sort_ops,
+                ...
+            )
+        )
+    }else{
+    out<-div(class = glue("pill-card-{type}"), header, div(class = glue("d-flex flex-{type} flex-wrap bg-transparent shelf"),
         ...))
+    }
+    htmlDependencies(out)<-
+        html_dependency_pill_card()
+    out
     # Returns: [htmlTag(div)]
 }

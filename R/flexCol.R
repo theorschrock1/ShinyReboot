@@ -6,8 +6,8 @@
 #' @export
 flexCol <- function(...) {
     # Create a BS4 flex column
-    dots <- list(...)
-    dots$class = paste("flex-column", dots$class)
-    expr_eval(flexBox(!!!dots))
+
+    out<-div(...)
+    out %>% tagAppendAttributes(class='d-flex flex-column')
     # Returns: HTML
 }

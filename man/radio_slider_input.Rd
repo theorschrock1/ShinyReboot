@@ -11,7 +11,8 @@ radio_slider_input(
   units_label = NULL,
   choices,
   selected = NULL,
-  class = "w-100"
+  class = "w-100",
+  variable_id = NULL
 )
 }
 \arguments{

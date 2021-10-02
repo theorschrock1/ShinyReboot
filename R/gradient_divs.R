@@ -15,7 +15,7 @@ gradient_divs <- function(..., n, domain, range) {
     # Create a series of div colored by a stepped gradient
     colors <- gradient_scale(domain, range)(bins = n)
     lapply(colors, function(x, ...) {
-        div(style = glue("background-color:{x}"), `data-color` = x) %>% tagAppendAttributes(...)
+        div(style = glue("background-color:{x};"), `data-color` = x) %>% tagAppendAttributes(...)
     }, ...)
     # Returns: \code{[list]}
 }

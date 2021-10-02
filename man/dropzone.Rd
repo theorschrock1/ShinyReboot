@@ -4,7 +4,7 @@
 \alias{dropzone}
 \title{Create a html dropzone.}
 \usage{
-dropzone(...)
+dropzone(..., inputId)
 }
 \value{
 \code{dropzone}: \code{[html]}

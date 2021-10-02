@@ -9,13 +9,15 @@
 #' @param sort [logical] Is the list sortable? Defaults to TRUE.
 #' @param delay [number] ms, Drag delay.
 #' @param delayOnTouchOnly [logical] Use Drag delay on mobile/touch devices. Defaults to FALSE.
-#' @param multiDrag=NULL,
+#' @param multiDrag [logical] Enable multidrag.
+#' @param deselectOnBody [logical] Deselect selected elements when a click occurs outside the sortable? Defaults to TRUE.
 #' @param touchStartThreshold=0,
 #' @param removeOnSpill [logical]  Remove item on spill. Defaults to FALSE.
+#' @param revertOnSpill  [logical] Revert item to original sortable on spill.
 #' @param disabled [logical] Disables the sortable if set to true. Defaults to FALSE.
 #' @param store #see Store on sortable.js github.
 #' @param animation [number] ms, animation speed moving items when sorting, `0` — without animation. Defaults to 150.
-#' @param easing= [string]  Easing for animation. Defaults to null. See https://easings.net/ for examples. Defaults to  "cubic-bezier(1, 0, 0, 1)".
+#' @param easing [string]  Easing for animation. Defaults to null. See https://easings.net/ for examples. Defaults to  "cubic-bezier(1, 0, 0, 1)".
 #' @param handle [string (css class)] Drag handle selector within list items. Defaults to NULL.
 #' @param filter [string (css class)] Selectors that do not lead to dragging (String or Function). Defaults to NULL.
 #' @param preventOnFilter [logical] Call `event.preventDefault()` when triggered `filter`
@@ -39,6 +41,7 @@
 #' @param removeCloneOnHide [logical] Remove the clone element when it is not showing, rather than just hiding it. Defaults to TRUE
 #' @param multiDragKey [string] Key that must be down for items to be selected. Defaults to NULL
 #' @param InsertThreshold [number] px, distance mouse must be from empty sortable to insert drag element into it
+#' @param setData [JS] 'dataTransfer' object of HTML5 DragEvent.
 #' @param onChoose [JS] Element is choosen. Defaults to NULL.
 #' @param onUnchoose  [JS] Element is unchosen. Defaults to NULL.
 #' @param onStart [JS]  Element dragging started. Defaults to NULL.
@@ -53,6 +56,8 @@
 #' @param onChange [JS] Called when dragging element changes position. Defaults to NULL.
 #' @param onSelect [JS] Called when an element is selected. Defaults to NULL.
 #' @param Deselect [JS] Called when an element is deselected. Defaults to NULL.
+#' @param onSpill [JS] Called when an elements is spilled outside a sortable. Defaults to NULL.
+#' @parem customGetValueFn [JS] Called when the shiny binding gets the value of the input. Defaults to NULL.
 #' @return \code{sortable_options}: HTML[JSON]
 
 #' @export
@@ -65,8 +70,10 @@ sort=NULL,
 delay=NULL,
 delayOnTouchOnly=NULL,
 multiDrag=NULL,
+deselectOnBody=NULL,
 touchStartThreshold=NULL,
 removeOnSpill=NULL,#Remove item on spill
+revertOnSpill=NULL,
 disabled=NULL, #Disables the sortable if set to true.
 animation= NULL, # ms, animation speed moving items when sorting, `0` — without animation
 easing= NULL,# Easing for animation. Defaults to null. See https://easings.net/ for examples.
@@ -94,6 +101,7 @@ dragoverBubble=NULL,
 removeCloneOnHide=NULL,# // Remove the clone element when it is not showing, rather than just hiding it
 multiDragKey=NULL,# // Key that must be down for items to be selected
 emptyInsertThreshold=NULL, #// px, distance mouse must be from empty sortable to insert drag element into it
+setData=NULL,
 onChoose=NULL,#function (/**Event*/ evt) {evt.oldIndex; // element index within parent},
 onUnchoose=NULL, #// Element is unchosen
 onStart=NULL, #// Element dragging started
@@ -107,7 +115,9 @@ onMove=NULL,#Event when you move an item in the list or between lists
 onClone=NULL,#// Called when creating a clone of element
 onChange=NULL,#// Called when dragging element changes position
 onSelect=NULL,#// Called when an element is selected
-onDeselect=NULL#// Called when an element is deselected
+onDeselect=NULL,#// Called when an element is deselected
+onSpill=NULL,
+customGetValueFn=NULL
 ){
 
   assert_string(name,null.ok = TRUE)
@@ -125,12 +135,15 @@ onDeselect=NULL#// Called when an element is deselected
   assert_number(delay,null.ok = T)
   assert_logical(delayOnTouchOnly,null.ok = T)
   assert_logical(multiDrag,null.ok = T)
+  assert_logical(deselectOnBody,null.ok = T)
   assert_number(touchStartThreshold,null.ok = T)
   assert_logical(removeOnSpill,null.ok = T)
+  assert_logical(revertOnSpill,null.ok = T)
   assert_logical(disabled,null.ok = T)
   assert_number(animation,null.ok = T)
   assert_string(easing,null.ok = T)
   assert_string(handle,null.ok = TRUE)
+  assert_string(filter,null.ok = TRUE)
   assert_logical(preventOnFilter,null.ok = T)
   assert_character(draggable,null.ok = TRUE)
   assert_string(dataIdAttr,null.ok = T)
@@ -151,6 +164,7 @@ onDeselect=NULL#// Called when an element is deselected
   assert_logical(dragoverBubble,null.ok = T)
   assert_logical(removeCloneOnHide,null.ok = T)
   assert_number(emptyInsertThreshold,lower=0,null.ok = T)
+  assert_valid_fn_string(setData,null.ok = T)
   assert_valid_fn_string(onChoose,null.ok = T)
   assert_valid_fn_string(onUnchoose,null.ok = T)
   assert_valid_fn_string(onStart,null.ok = T)
@@ -165,12 +179,21 @@ onDeselect=NULL#// Called when an element is deselected
   assert_valid_fn_string(onUpdate,null.ok = T)
   assert_valid_fn_string(onSelect,null.ok = T)
   assert_valid_fn_string(onDeselect,null.ok = T)
+  assert_valid_fn_string(onSpill,null.ok = T)
+  assert_valid_fn_string(customGetValueFn,null.ok = T)
+
+  if(is.character(pull)&&pull%starts_with%'function')
+    assert_valid_fn_string(pull)
+  if(is.null(setData))
+
   if(nnull(handle)&&!grepl(start_with('\\.'),handle))
     handle=paste0(".",handle)
   if(nnull(draggable)&&!grepl(start_with('\\.'),draggable))
     draggable=paste0(".",draggable)
   if(nnull(filter)&&!grepl(start_with('\\.'),filter))
     filter=paste0(".",filter)
+  if(nnull(selectedClass)&&grepl(start_with('\\.'),selectedClass))
+    selectedClass=str_remove(selectedClass,"^\\.")
   if(nnull(put)&&is.list(put)&&names(put)!='class_types')
     g_stop("put must be logical, a vector of group names, or list of classes with format `list(class_types=c('class1,'class2'))`")
 
@@ -193,12 +216,16 @@ onDeselect=NULL#// Called when an element is deselected
   tmp$group=tmp$group[sapply(tmp$group,nnull)]
   #tmp$filter=c(tmp$filter,'.sortable-options')
   if(len0(tmp$group))tmp$group=NULL
-  if(len0(tmp))return(
-    "{}"
-  )
+  if(len0(tmp)){
+      out='{}'
+      class(out)<-c('sortable_options',class(out))
+      return(out)
+  }
   tmp<-tmp[sapply(tmp,nnull)]
 
-  jsonlite::toJSON(tmp, auto_unbox = TRUE, json_verbatim = TRUE)
-
+  out<-jsonlite::toJSON(tmp, auto_unbox = TRUE, json_verbatim = TRUE)
+  class(out)<-c('sortable_options',class(out))
+  out
 
 }
+

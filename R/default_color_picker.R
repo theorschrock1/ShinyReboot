@@ -8,7 +8,7 @@
 #' @param ...
 #' @return \code{default_color_picker}: \code{[html]}
 #' @export
-default_color_picker <- function(inputId, value = "#ffffff", width = "25px", height = "25px", 
+default_color_picker <- function(inputId, value = NULL, width = "25px", height = "25px",
     ...) {
     # Generate a default color picker
     assert_string(inputId)
@@ -16,7 +16,6 @@ default_color_picker <- function(inputId, value = "#ffffff", width = "25px", hei
     assert_string(width, pattern = "\\d+px$|\\%$")
     assert_string(height, pattern = "\\d+px$")
     wd_ht = glue("width:{width};height:{height};")
-    tags$input(type = "color", class = "default-color-picker", id = inputId, value = value, 
-        style = wd_ht) %>% tagAppendAttributes(...) %>% attachDependencies(html_dependency_default_color_picker())
+    tags$input(type = "color", class = "default-color-picker", id = inputId,`data-value` = value%or%'#ffffff',style = wd_ht) %>% tagAppendAttributes(...) %>% attachDependencies(html_dependency_default_color_picker())
     # Returns: \code{[html]}
 }

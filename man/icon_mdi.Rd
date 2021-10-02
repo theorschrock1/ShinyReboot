@@ -2,20 +2,22 @@
 % Please edit documentation in R/icon_mdi.R
 \name{icon_mdi}
 \alias{icon_mdi}
-\title{Generate a materical icon.}
+\title{Generate a material icon.}
 \usage{
-icon_mdi(name, class = "")
+icon_mdi(name, class = NULL, ...)
 }
 \arguments{
 \item{name}{[character]  Must have an exact length of 1.}
 
 \item{class}{[character]  Must have an exact length of 1.  Defaults to ''}
+
+\item{...}{additional html attributes.}
 }
 \value{
 \code{icon_mdi}: [htmlTag(span)]
 }
 \description{
-Generate a materical icon.
+Generate a material icon.
 }
 \examples{
  icon_mdi('undo')

@@ -4,7 +4,7 @@
 \alias{main_menu_bar}
 \title{Create a main menu bar [File,Edit,Code,View,etc].}
 \usage{
-main_menu_bar(..., class = "")
+main_menu_bar(..., class = NULL)
 }
 \arguments{
 \item{...}{should be named lists.  name represent the menu header and contents the dropdown options. Can be used recursively for multiple dropdown options.  See example.}

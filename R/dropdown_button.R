@@ -12,7 +12,10 @@ dropdown_button <- function(inputId, label) {
     # Create a action button in a dropdown menu
     assert_string(inputId)
     assert_string(label)
-    div(class = "btn-group-toggle dropdown-group", div(id = inputId, role = "button", class = "btn dropdown-item dropdown-btn  action-item", 
+    if(inputId%ndetect%start_with('action_'))
+        inputId<-paste0('action_',inputId)
+
+    div(class = "btn-group-toggle dropdown-group", div(id = inputId, role = "button", class = "btn dropdown-item dropdown-btn  action-item",
         tags$span(class = "mdi mdi-check-bold icon-left"), tags$span(class = "dropdown-label", label), tags$span(class = "mdi mdi-menu-right float-right icon-right")))
     # Returns: \code{[html]}
 }

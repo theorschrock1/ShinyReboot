@@ -5,8 +5,8 @@
 \title{Update a sortableDiv}
 \usage{
 updateSortableDiv(
-  inputId,
   ...,
+  inputId,
   content = NULL,
   order = NULL,
   append = NULL,
@@ -15,9 +15,9 @@ updateSortableDiv(
 )
 }
 \arguments{
-\item{inputId}{the id of the sortable}
-
 \item{...}{sortable options to update}
+
+\item{inputId}{the id of the sortable}
 
 \item{content}{Shiny tag or list of shiny tags.  Replaces the content of the sortable. Each element should have a data-id attribute.}
 

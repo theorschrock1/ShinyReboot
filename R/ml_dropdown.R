@@ -27,8 +27,9 @@ ml_dropdown <- function(..., class = "", is_submenu = FALSE) {
     assert_character(class,len = 1)
     assert_logical(is_submenu,len=1)
     if(is_submenu==F) {
-        tags$div(class=glue("dropdown {class}"),
+       out<- tags$div(class=glue("dropdown {class}"),
                  ...)
+       return(attachDependencies(out, html_dependency_dropdown_menu()))
     }else{
         tags$li(class=glue("dropdown {class}"),
                 ...)

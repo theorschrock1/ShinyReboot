@@ -9,14 +9,14 @@ range_slider_input(
   inputId,
   label = NULL,
   units_label = NULL,
-  min,
-  max,
+  range,
   lower_val = NULL,
   upper_val = NULL,
   prefix = NULL,
   suffix = NULL,
   signif = 5,
-  class = "w-100"
+  class = "w-100",
+  variable_id = NULL
 )
 }
 \arguments{
@@ -25,10 +25,6 @@ range_slider_input(
 \item{label}{\code{[string]}  NULL is ok.  Defaults to \code{NULL}}
 
 \item{units_label}{\code{[NULL]}  Defaults to \code{NULL}.}
-
-\item{min}{\code{[number]}}
-
-\item{max}{\code{[number]}  Must be greater than \code{min}.}
 
 \item{lower_val}{\code{[number]}  NULL is ok.  Defaults to \code{NULL}}
 
@@ -41,6 +37,10 @@ range_slider_input(
 \item{signif}{\code{[int]}  Defaults to \code{5}}
 
 \item{class}{\code{[string]}  NULL is ok.  Defaults to \code{'w-100'}}
+
+\item{min}{\code{[number]}}
+
+\item{max}{\code{[number]}  Must be greater than \code{min}.}
 }
 \value{
 \code{range_slider_input}: \code{[html]}

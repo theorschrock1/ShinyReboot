@@ -27,7 +27,7 @@
 #'  }
 #' @export
 authorize_user <- function(id, user = NULL, pw = NULL, path = "udb.rds",
-    app_ui = NULL) {
+    app_ui = NULL,logo_path=NULL,logo_width=NULL,logo_height=NULL) {
     # Authorize app access
     assert_string(id)
     assert_string(user, null.ok = TRUE)
@@ -41,7 +41,7 @@ authorize_user <- function(id, user = NULL, pw = NULL, path = "udb.rds",
             req(udb())
             if (is.null(user) | is.null(pw)) {
             insertUI(selector = "body > div.container-fluid",
-                  ui = authorize_ui(id), where = "beforeEnd")
+                  ui = authorize_ui(id,logo_path=logo_path,logo_width=logo_width,logo_height=logo_height), where = "beforeEnd")
                 vals$loginUI = TRUE
             } else {
                 res = udb()$enter(user, pw)
@@ -101,48 +101,57 @@ authorize_user <- function(id, user = NULL, pw = NULL, path = "udb.rds",
     })
     # Returns: \code{[character(1)]}
 }
-authorize_ui <- function(id) {
+authorize_ui <- function(id,logo_path=NULL,logo_width=NULL,logo_height=NULL) {
     #Documentation
-
     ns <- NS(id)
+    img=NULL
+   if(nnull(logo_path)){
+       #assert_file(logo_path)
+       assert_number(logo_width)
+       assert_number(logo_height)
+      img= tags$img(class = "mb-4", src =logo_path,
+                alt = "", width = as.character(logo_width), height = as.character(logo_height))
+   }
+   inner=tagList(img,tags$h1(class = "h3 mb-3 font-weight-normal",
+            "Please sign in"),
+    tags$label(`for` = ns("auth_email"), class = "sr-only",
+               "Email address"),
+    tags$input(
+        type='text',
+        id = ns("auth_email"),
+        class = "form-control",
+        placeholder = "Username",
+        required = "required",
+        autofocus = "autofocus"
+    ),
+    tags$label(`for` =  ns("auth_pw"),
+               class = "sr-only", "Password"),
+    tags$input(
+        type = "password",
+        id = ns("auth_pw"),
+        class = "form-control",
+        placeholder = "Password",
+        required = "required"
+    ),
+    div(class = "checkbox mb-3", tags$label(
+        tags$input(type = "checkbox",
+                   value = "remember-me"),
+        "Remember me"
+    ),
+    div(id = "validationUP",
+        class = "invalid-feedback", "Invalid username or password")
+    ),
+    actionButton(inputId=ns('submit'),label="Sign in",class = "btn btn-lg btn-primary btn-block",type = "submit"),
+    tags$p(class = "mt-5 mb-3 text-muted",
+           "2020"))
 
     signInTag<-tags$form(
-        id=ns('signin'),
-        class = "form-signin",
-        tags$h1(class = "h3 mb-3 font-weight-normal",
-                "Please sign in"),
-        tags$label(`for` = ns("auth_email"), class = "sr-only",
-                   "Email address"),
-        tags$input(
-            type='text',
-            id = ns("auth_email"),
-            class = "form-control",
-            placeholder = "Username",
-            required = "required",
-            autofocus = "autofocus"
-        ),
-        tags$label(`for` =  ns("auth_pw"),
-                   class = "sr-only", "Password"),
-        tags$input(
-            type = "password",
-            id = ns("auth_pw"),
-            class = "form-control",
-            placeholder = "Password",
-            required = "required"
-        ),
-        div(class = "checkbox mb-3", tags$label(
-            tags$input(type = "checkbox",
-                       value = "remember-me"),
-            "Remember me"
-        ),
-        div(id = "validationUP",
-            class = "invalid-feedback", "Invalid username or password")
-        ),
-        actionButton(inputId=ns('submit'),label="Sign in",class = "btn btn-lg btn-primary btn-block",type = "submit"),
-        tags$p(class = "mt-5 mb-3 text-muted",
-               "2020")
-    )
-    out<-attachDependencies( signInTag,html_dependency_ShinySignIn() )
-    tagList(shinyjs::useShinyjs(),out)
+        class = "form-signin")
+    signInTag=tagAppendChild( signInTag,inner)
+
+    #out<-attachDependencies( signInTag,html_dependency_ShinySignIn() )
+
+ div(id=ns('signin'),class='signindiv',shinyjs::useShinyjs(),tags$link(rel='stylesheet',type='text/css',href='ShinyReboot/signin/signin.css'), signInTag)
+
 }
 

@@ -4,7 +4,16 @@
 \alias{authorize_user}
 \title{Authorize app access.}
 \usage{
-authorize_user(id, user = NULL, pw = NULL, path = "udb.rds", app_ui = NULL)
+authorize_user(
+  id,
+  user = NULL,
+  pw = NULL,
+  path = "udb.rds",
+  app_ui = NULL,
+  logo_path = NULL,
+  logo_width = NULL,
+  logo_height = NULL
+)
 }
 \arguments{
 \item{id}{\code{[string]} a unique id for the module}

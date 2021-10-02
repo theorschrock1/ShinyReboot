@@ -9,8 +9,8 @@ folder_collapse(
   inputId,
   label,
   open = FALSE,
-  open_icon = "folder-outline",
-  closed_icon = "folder-open-outline"
+  open_icon = "folder-open",
+  closed_icon = "folder"
 )
 }
 \arguments{
@@ -33,4 +33,26 @@ Create a collapsible folder.
 \examples{
  folder_collapse(inputId = 'myid', label = 'folder1', div('one'),
  div('two'))
+
+ if(interactive()){
+ library("shiny")
+ library("ShinyReboot")
+ library("bslib")
+ bs_global_theme()
+ ui <- fluidPage(
+ bs_theme_dependencies(theme = bs_global_get()),
+
+ tags$h1("Icon Toggle"),
+ folder_collapse(inputId='myid',label='folder1',div('one'),div('two'))
+ )
+
+ server = function(input, output, session) {
+
+ output$res<-renderText({
+ input$myid
+ })
+ }
+ shinyApp(ui = ui, server = server)
+ }
+
 }

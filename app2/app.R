@@ -140,16 +140,32 @@ ui <- fluidPage(
                       ghostClass='ghost-class-row',
                       dragClass='drag',
                     ),
-                    pill_card( inputId = "marks",
-                               name = "Marks",
-                               icon='bookmark-multiple-outline',
-                               sortable = FALSE,
-                               fallbackOnBody = TRUE,
-                                   btn_block_row(
-                                     block_btns(inputId=tmpids(3),label=c("Color","Size","Label"),icon=c('palette-outline',"chart-bubble","text-recognition"))),
-                                   btn_block_row(
-                                     block_btns(inputId=tmpids(3),label=c("Detail","Tooltip","Shape"),icon=c('grain','tooltip-text-outline','shape-outline'))
-                                   ))),
+                    pill_card(
+                      inputId = "marks",
+                      name = "Marks",
+                      icon = 'bookmark-multiple-outline',
+                      sort_ops = sortable_options(
+                        'marks',
+                        pull = TRUE,
+                        put = list(class_types = c(".pill-measure", ".pill-dimension")),
+                        removeOnSpill = TRUE,
+                        sort = TRUE,
+                        draggable = '.pill-item'
+                      ),
+                      btn_block(
+                        `data-id` = 'btn_block',
+                        btn_block_row(block_btns(
+                          inputId = tmpids(3),
+                          label = c("Color", "Size", "Label"),
+                          icon = c('palette-outline', "chart-bubble", "text-recognition")
+                        )),
+                        btn_block_row(block_btns(
+                          inputId = tmpids(3),
+                          label = c("Detail", "Tooltip", "Shape"),
+                          icon = c('grain', 'tooltip-text-outline', 'shape-outline')
+                        ))
+                      )
+                    ),
 
                     flexCol(class = "flex-fill",
 # rowcard----

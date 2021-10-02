@@ -15,7 +15,7 @@ view_mdi_icons=function(icon_names,size=25){
     icon_names<- search_mdi_icons(icon_names)
     inner<- glue("<div><span class='{icon_names} p-1 mr-3'></span>{icon_names}</div>")%sep%""
 
-    out<- AO::sglue('<!doctype html>
+    out<-cglue('<!doctype html>
 <html>
   <head>
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -32,7 +32,7 @@ font-size: &&size&&px;
 &&inner&&
   </div>
   </body>
-</html>',open="&&",close="&&")
+</html>')
     tempDir <- tempfile()
     dir.create(tempDir)
     htmlFile<-file.path(tempDir,"tempHtml.html")

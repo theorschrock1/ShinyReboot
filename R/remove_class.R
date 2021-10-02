@@ -29,7 +29,8 @@ remove_class <- function(x, class) {
     assert_character(class)
     class = unlist(str_split(class, "\\s+"))
     classes <- unlist(str_split(tagGetAttribute(x, "class"), "\\s+"))
-    x$attribs$class = classes %NIN% class %sep% " "
+    x$attribs[names(x$attribs)=='class']=NULL
+    x=tagAppendAttributes(x,class=classes %NIN% class %sep% " ")
     x
     # Returns: shiny tag
 }

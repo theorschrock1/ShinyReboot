@@ -11,7 +11,7 @@
 ao_sheet <- function(..., inputId) {
     # create an AO sheet binding
     assert_string(inputId)
-    div(...) %>% tagAppendAttributes(id = inputId) %>% attachDependencies(html_dependency_ao_sheet(), 
+    div(...) %>% tagAppendAttributes(id = inputId,class='ao-sheet') %>% attachDependencies(html_dependency_ao_sheet(),
         append = TRUE)
     # Returns: \code{[HTML]}
 }

@@ -1,0 +1,42 @@
+.radio .mdi-checkbox-blank-outline,
+.radio .mdi-check-box-outline,
+.checkbox .mdi-radiobox-blank,
+.checkbox .mdi-radiobox-marked{
+   display:none;
+}
+.checkbox.checked .mdi-checkbox-blank-outline,.radio.checked .mdi-radiobox-blank{
+    display:none;
+}
+.checkbox:not(.checked) .mdi-check-box-outline,.radio:not(.checked) .mdi-radiobox-marked{
+    display:none;
+}
+
+
+
+.mdi-checkbox-blank-outline, .mdi-radiobox-blank{
+   color: #c9c9c9;
+}
+.checkbox-row:hover{
+    background-color:#f2f2f2;
+}
+
+/*.ao-checkbox-group .dropdown-menu{
+overflow:hidden;
+}
+.ao-checkbox-group .checkgroup-wrapper{
+  height:100%;
+}
+.ao-checkbox-group .checkgroup{
+overflow-y:auto;
+}*/
+.ao-checkbox-group .check-label{
+  font-size:.75rem;
+}
+.ao-checkbox-group .form-control{
+  height: calc(1.25em + 2px);
+
+  font-size: .9rem;
+  width: 100%;
+  border-radius: 0;
+  border:1px solid #bfbfbf;
+}

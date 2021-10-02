@@ -12,9 +12,32 @@
 
 #'  folder_collapse(inputId = 'myid', label = 'folder1', div('one'),
 #'  div('two'))
+#'
+#'  if(interactive()){
+#'  library("shiny")
+#'  library("ShinyReboot")
+#'  library("bslib")
+#'  bs_global_theme()
+#'  ui <- fluidPage(
+#'  bs_theme_dependencies(theme = bs_global_get()),
+#'
+#'  tags$h1("Icon Toggle"),
+#'  folder_collapse(inputId='myid',label='folder1',div('one'),div('two'))
+#'  )
+#'
+#'  server = function(input, output, session) {
+#'
+#'  output$res<-renderText({
+#'  input$myid
+#'  })
+#'  }
+#'  shinyApp(ui = ui, server = server)
+#'  }
+
+#'
 #' @export
-folder_collapse <- function(..., inputId, label, open = FALSE, open_icon = "folder-outline", 
-    closed_icon = "folder-open-outline") {
+folder_collapse <- function(..., inputId, label, open = FALSE, open_icon ="folder-open" ,
+    closed_icon ="folder" ) {
     # Create a collapsible folder
     assert_string(inputId)
     assert_string(label, null.ok = TRUE)
@@ -23,10 +46,10 @@ folder_collapse <- function(..., inputId, label, open = FALSE, open_icon = "fold
     assert_string(closed_icon, null.ok = TRUE)
     collapse = "collapse"
     content <- div(id = paste0(inputId, "collapse"), class = collapse, ...)
-    tagList(flexRow(class = "mdi-md align-items-center text-center", div(icon_mdi("chevron-right")), 
-        icon_toggler(inputId = inputId, value = open, icon_false = closed_icon, icon_true = open_icon, 
-            class = "icon", `data-toggle` = "collapse", `aria-expanded` = js_logical(open), 
-            `data-target` = paste0("#", inputId, "collapse"), span(class = "folder-label", 
+    tagList(flexRow(class = "align-items-center text-center", div(icon_mdi("chevron-right")),
+        icon_toggler(inputId = inputId, value = open, icon_false = closed_icon, icon_true = open_icon,
+            class = "icon", `data-toggle` = "collapse", `aria-expanded` = js_logical(open),
+            `data-target` = paste0("#", inputId, "collapse"), span(class = "folder-label",
                 label))), content)
     # Returns: \code{[html]}
 }

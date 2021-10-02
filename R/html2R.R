@@ -69,7 +69,7 @@ html2R <- function(x, try_parsing = TRUE,silent_eval=TRUE) {
     while (!is.na(hyphen)) {
         hyphen <- str_extract(x, "\\w+-\\w+=")
         if (!is.na(hyphen)) {
-            x = str_replace(x, "\\w+-[[[:alpha:]]\\-]+=", "{hyphen}")
+            x = str_replace(x, "\\w+-[[[:alpha:]]_\\-]+=", "{hyphen}")
             hyphen = paste0("`", str_remove(hyphen, "="), "`=")
             x <- glue(x)
         }

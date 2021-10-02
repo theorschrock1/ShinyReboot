@@ -4,7 +4,14 @@
 \alias{pill_item}
 \title{Create pill items.}
 \usage{
-pill_item(id, label, type = "measure")
+pill_item(
+  id,
+  label,
+  type = "measure",
+  data = list(),
+  icon = "numeric",
+  is_hierachy = FALSE
+)
 }
 \arguments{
 \item{id}{[character] the pill ids}

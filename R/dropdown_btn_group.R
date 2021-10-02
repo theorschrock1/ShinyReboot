@@ -12,9 +12,7 @@
 #' @examples
 
 #'  dropdown_btn_group(inputIds = c('copy', 'duplicate', 'edit'),
-
 #'  labels = c('Copy', 'Duplicate', 'Edit'), types = c('action',
-
 #'  'action', 'model'))
 
 #' @export
@@ -34,7 +32,7 @@ dropdown_btn_group <- function(..., inputIds, labels, state = "", types, class =
     btypes <-
         chr_approx(c("action", "checkbox", "submenu", "model"),
                    c("","data-toggle=\"buttons\"",
-                    glue("data-toggle =\"dropdown\"  aria-haspopup =\"true\"  aria-expanded=\"false\"",
+                    glue("aria-haspopup =\"true\"  aria-expanded=\"false\"",
                      "")
                    ))(types)
 
@@ -47,7 +45,7 @@ dropdown_btn_group <- function(..., inputIds, labels, state = "", types, class =
                    )(types)
     labels <- ifelse(types == "model", paste0(labels, "..."), labels)
     bclass = str_trim(glue("btn dropdown-item dropdown-btn {submenu2} {state} {class}  {aoType}"))
-    buttons <- HTML(glue("<div id=\"{inputIds}\" role=\"button\" class=\"{bclass}\" {btypes} >\n  <span class=\"mdi mdi-{check_icon} icon-left\"></span><span>{labels}</span><span class=\"mdi mdi-menu-right float-right icon-right\"></span></div>") %sep%
+    buttons <- HTML(glue("<div id=\"{inputIds}\" role=\"button\" class=\"{bclass}\" {btypes} >\n  <span class=\"mdi mdi-{check_icon} icon-left\"></span><span class='dropdown-label'>{labels}</span><span class=\"mdi mdi-menu-right float-right icon-right\"></span></div>") %sep%
         "\n")
     div(class = glue("btn-group-toggle dropdown-group {submenu}"), buttons, ...)
     # Returns: [HTML]

@@ -32,7 +32,7 @@ $.extend(&&name&&Binding, {
     getState: function (el) {
     // Store options in an array of objects, each with with value and label
     },
-  getRatePolicy: function()
+  getRatePolicy: function(){
   /*  return {
       policy: "debounce",
       delay: 250

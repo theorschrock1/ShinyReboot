@@ -1,0 +1,9 @@
+.context-menu {
+  z-index: 2100;
+  position: fixed;
+  transition: 0.2s display ease-in;
+}
+
+ .menu-text.context-label {
+  display: none;
+}

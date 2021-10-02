@@ -26,6 +26,7 @@ icon_radio_group <- function(inputId, options, icon_name, tooltip, class = "", t
     inner = expr_glue(tags$label(`data-toggle` = "tooltip", title = "{tooltip}", class = "btn btn-sm menu-item",
         tags$input(type = "radio", name = "{inputId}", id = "{options}"), tags$span(class = "mdi mdi-{icon_name} menu-icons {class}"))) %>%
         lapply(eval)
-    div(id = inputId, class = "btn-group-toggle ao-radio-button-grp", `data-toggle` = "buttons", inner)
+   outTag<- div(id = inputId, class = "btn-group-toggle ao-radio-button-grp", `data-toggle` = "buttons", inner)
+   attachDependencies( outTag, html_dependency_material_icons())
     # Returns: [HTML]
 }

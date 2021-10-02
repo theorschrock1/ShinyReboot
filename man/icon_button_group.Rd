@@ -30,7 +30,7 @@ icon_button_group(
 Create an icon button group.
 }
 \examples{
- icon_button_group(inputId = c('undo', 'redo', 'save'), icon_name = c('undo', 
- 'redo', 'content-save-outline'), tooltip = c('Undo', 
- 'Redo', 'Save')) 
+ icon_button_group(inputId = c('undo', 'redo', 'save'), icon_name = c('undo',
+ 'redo', 'content-save-outline'), tooltip = c('Undo',
+ 'Redo', 'Save'))
 }

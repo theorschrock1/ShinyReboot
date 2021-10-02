@@ -61,8 +61,12 @@ $.extend(splitBinding, {
     config.options.onDrag=eval("(" + config.options.onDrag + ")");
     config.options.onDragStart=eval("(" +config.options.onDragStart + ")");
     config.options.onDragEnd=eval("(" +config.options.onDragEnd + ")");
+    config.options.gutter=eval("(" +config.options.gutter + ")");
+    config.options.elementStyle=eval("(" +config.options.elementStyle + ")");
+    config.options.gutterStyle=eval("(" +config.options.gutterStyle + ")");
    window[splitId]=Split(config.split_ids,config.options);
   }
 });
 
 Shiny.inputBindings.register(splitBinding, "shiny.split-div");
+document.getElement

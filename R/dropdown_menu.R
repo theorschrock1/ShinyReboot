@@ -30,8 +30,21 @@ dropdown_menu <- function(..., label, class = "") {
     # Create a drop down menu
     assert_character(label, len = 1)
     assert_character(class, len = 1)
-    ml_dropdown(class = class, is_submenu = FALSE, dd_header(label, id = label2id(label),
-        class = "dropdown-btn menu-text", carat = FALSE, is_submenu = FALSE), dd_menu(id = label2id(label),
-        class = "shadow", add_dividers(..., type = "-")))
+    ml_dropdown(
+        class = class,
+        is_submenu = FALSE,
+        dd_header(
+            label,
+            id = label2id(label),
+            class = "dropdown-btn menu-text",
+            carat = FALSE,
+            is_submenu = FALSE
+        ),
+        dd_menu(
+            id = label2id(label),
+            class = "shadow",
+            add_dividers(..., type = "-")
+        )
+    )
     # Returns: HTML
 }

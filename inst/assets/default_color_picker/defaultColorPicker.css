@@ -1,0 +1,17 @@
+.default-color-picker{
+    border-radius:0;
+    background-color:transparent;
+    cursor: default;
+    color:  black;
+    border-width: 0;
+    outline:none;
+    border:none;
+    border-style:none;
+    border-color: transparent;
+    border-image: none;
+    padding: 0px 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+}

@@ -1,0 +1,40 @@
+
+
+
+.d-palette-picker .pal-sqr {
+    width:25px;
+    height:25px;
+
+}
+.d-palette-picker .pal-sqr:hover{
+    border:1px solid #000000 !important;
+}
+.d-palette-picker .pal-sqr.active{
+    box-shadow: rgba(0, 0, 0, 0.9) 0px 0px 2.0px, rgba(0, 0, 0, 0.9) 0px 0px 2.0px;
+}
+.d-palette-picker .var-div.active .sortable_colors{
+    cursor:crosshair;
+}
+.d-palette-picker .var-div{
+  max-height: 175px;
+  overflow-y:auto;
+  overflow-x: hidden;
+}
+.d-palette-picker .sortable_vars {
+    font-size:11px;
+    width:14px;
+    height:14px;
+
+
+}
+
+.d-palette-picker .ghost {
+   background-color:#f0f0f0;
+
+}
+.d-palette-picker .sortable_colors {
+
+    width:14px;
+    height:14px;
+
+}

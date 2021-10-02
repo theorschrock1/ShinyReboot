@@ -1,0 +1,112 @@
+.ao-range-slider .edit-val{
+  height: calc(1.25em + 2px);
+
+  font-size: .75rem;
+  width: 100%;
+  border-radius: 0;
+  border:1px solid #bfbfbf;
+}
+.ao-range-slider .edit-numeric,.ao-range-slider .factor{
+  height: calc(1.25em + 2px);
+
+  font-size: .75rem;
+  border-radius: 0;
+}
+.ao-range-slider  .range-max .edit-val{
+    text-align:right;
+}
+.edit-numeric:hover{
+    background-color:#ededed;
+}
+
+
+.ao-range-slider .irs-slider{
+    width:10px;
+    height:10px;
+    top:-5px;
+    border-radius:0px;
+}
+.ao-range-slider .irs-slider.to{
+    width:10px;
+    height:8px;
+         background-color: white;
+    top:-4px;
+    border-radius: 0 5px 5px 0;
+    border:1px solid #828282;
+     transform:translateX(5px);
+
+}
+.ao-range-slider .irs-slider.from{
+        border:1px solid #828282;
+        background-color: white;
+    width:10px;
+    height:8px;
+    top:-4px;
+    transform:translateX(-5px);
+    border-radius:  5px 0 0 5px;
+}
+
+.ao-range-slider .irs-slider.from.irs-fixed{
+ display:none;
+}
+.ao-range-slider .irs-slider.to.irs-fixed{
+ display:none;
+}
+.ao-range-slider  .irs-bar{
+     height:6px;
+    top:-3px;
+}
+
+.ao-range-slider .irs-line{
+    opacity:.7;
+    height:6px;
+    top:-3px;
+
+}
+
+.ao-range-slider  .irs-bar-edge{
+    height:6px;
+    top:-3px;
+}
+
+.ao-range-slider .slider-form{
+    height:20px;
+    font-size:.625rem;
+    padding:.1rem;
+    width:100%;
+}
+
+.ao-range-slider .slider-input-wrapper{
+    width:15%;
+}
+
+.ao-range-slider .irs-bar,.ao-range-slider .irs-bar-edge{
+        background-color:#bfbfbf;
+    border-color:#6b6b6b;
+}
+.ao-range-slider .irs-grid{
+      top:4px;
+}
+.ao-range-slider .irs-grid-pol{
+    height:3px;
+}
+.ao-range-slider .irs-grid-pol.small,.irs-grid-text{
+      display:none;
+    }
+.ao-range-slider .irs-bar-edge{
+    width:5px;
+    background-color:#bfbfbf;
+    border-color:#6b6b6b;
+}
+
+.ao-range-slider .irs-min,
+.ao-range-slider .irs-max,
+.ao-range-slider .irs-single,
+.ao-range-slider .irs-to,
+.ao-range-slider .irs-from{
+ display:none;
+}
+
+.ao-range-slider .irs{
+height:5px;
+}

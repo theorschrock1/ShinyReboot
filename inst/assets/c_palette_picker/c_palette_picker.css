@@ -1,0 +1,66 @@
+.cont_p_selected{
+  height:25px;
+}
+.filter-option .c_palette{
+  margin:.25rem .25rem ;
+}
+
+.stepped .cont_p_selected .c_palette{
+  height:0px;
+}
+.mycheck{
+  width :9px !important;
+  margin-left: -.75rem;
+}
+.check2{
+  width :9px ;
+}
+.w-33{
+  width:33.3% !important;
+}
+.range-label{
+  font-size:9px;
+}
+.my-group3{
+  font-size :10px;
+  height:12px;
+
+}
+.my-group,.input-group-sm>input.my-group{
+  font-size :11px;
+  height:16px;
+}
+.step-group .form-control{
+    max-width:40px;
+}
+.disabled{
+  color:#bfbfbf;
+    border:none;
+}
+.mycheck-label{
+  font-size :9px;
+
+}
+.handle:hover{
+  cursor:col-resize;
+}
+.spectrum-handle{
+  background-color:black;
+  width:4px;
+  top:-6px;
+  height:4px !important;
+
+  position:relative;
+}
+.spectrum-handle.handle-left{
+left:0%;
+transform:translate(-2px) rotate(45deg)  ;
+}
+.spectrum-handle.handle-mid{
+left:50%;
+transform: translate(-6px) rotate(45deg);
+}
+.spectrum-handle.handle-right{
+transform: translate(-10px) rotate(45deg);
+left:100%;
+}

@@ -18,7 +18,7 @@
 #'  upper_val = 5, range = c(0, 10), label = 'new_label',
 #'  signif = 4, prefix = '$')
 #' @export
-update_range_slider_input <- function(..., inputId, lower_val = NULL, upper_val = NULL, 
+update_range_slider_input <- function(..., inputId, lower_val = NULL, upper_val = NULL,
     range = NULL, label = NULL, signif = NULL, prefix = NULL, suffix = NULL, session = getDefaultReactiveDomain()) {
     # Update a range slider input
     dots = assert_named(list(...))
@@ -36,11 +36,11 @@ update_range_slider_input <- function(..., inputId, lower_val = NULL, upper_val 
         minr = min(dots$range)
         maxr = max(dots$range)
     }
-    value = list(to = dots$lower, from = dots$upper, min = minr, max = maxr, step = dots$step)
+    value = list(from = dots$lower,to = dots$upper,  min = minr, max = maxr, step =findStepSize(minr,maxr,dots$step))
     dots$max = maxr
     dots$min = minr
     dots$range = NULL
-    message = drop_nulls(list(value = drop_nulls(value), label = dots$label, data = drop_nulls(dots[names(dots) %nin% 
+    message = drop_nulls(list(value = drop_nulls(value), label = dots$label, data = drop_nulls(dots[names(dots) %nin%
         c("label")])))
     if (is.null(session)) {
         print("Warning: NULL session: returning message")
@@ -48,4 +48,24 @@ update_range_slider_input <- function(..., inputId, lower_val = NULL, upper_val 
     }
     updateInput(inputId, value = message, session = session)
     # Returns: \code{[invisible(NULL)]}
+}
+hasDecimals<-function (value)
+{
+    truncatedValue <- round(value)
+    return(!identical(value, truncatedValue))
+}
+
+findStepSize=function (min, max, step)
+{
+    if (!is.null(step))
+        return(step)
+    range <- max - min
+    if (range < 2 || hasDecimals(min) || hasDecimals(max)) {
+        pretty_steps <- pretty(c(min, max), n = 100)
+        n_steps <- length(pretty_steps) - 1
+        signif(digits = 10, (max(pretty_steps) - min(pretty_steps))/n_steps)
+    }
+    else {
+        1
+    }
 }

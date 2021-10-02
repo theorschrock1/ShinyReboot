@@ -307,3 +307,11 @@
           type = "submit", "Sign in"), tags$p(class = "mt-5 mb-3 text-muted", 
           "2017-2020"))
 
+---
+
+    Code
+      html2R("<div id='one' class='robot' data-dropdown_letters='1'>dsfssI</div>")
+    Output
+      div(id = "one", class = "robot", `data-dropdown_letters` = "1", 
+          "dsfssI")
+

@@ -11,7 +11,7 @@
 #'
 #'
 #' @export
-updateSortableDiv<- function(inputId,...,content=NULL,order = NULL,append=NULL,clear=FALSE,session = getDefaultReactiveDomain()) {
+updateSortableDiv<- function(..., inputId,content=NULL,order = NULL,append=NULL,clear=FALSE,session = getDefaultReactiveDomain()) {
 
   options=list(...)
   assert_subset(names(options),choices=fn_fmls_names(assert_sortable_options))
@@ -44,9 +44,10 @@ updateSortableDiv<- function(inputId,...,content=NULL,order = NULL,append=NULL,c
   if(clear){
     content=""
   }
+  print(content)
   message <- drop_nulls(
     list(
-      value =  order,
+      order =  order,
       options=options,
       append=append,
       content=content

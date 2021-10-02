@@ -1,0 +1,14 @@
+.icon-toggler .icon-true{
+  display:block;
+}
+
+.icon-toggler .icon-false{
+  display:none;
+}
+
+.icon-toggler.collapsed .icon-true{
+  display:none;
+}
+.icon-toggler.collapsed .icon-false{
+  display:block;
+}

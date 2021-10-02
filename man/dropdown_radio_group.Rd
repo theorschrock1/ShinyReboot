@@ -9,7 +9,8 @@ dropdown_radio_group(
   options,
   labels,
   class = "",
-  check_icon = "checkbox-blank-circle"
+  check_icon = "checkbox-blank-circle",
+  trigger_event = NULL
 )
 }
 \arguments{

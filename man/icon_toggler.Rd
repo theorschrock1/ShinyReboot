@@ -4,16 +4,26 @@
 \alias{icon_toggler}
 \title{Create an icon toggler.}
 \usage{
-icon_toggler(inputId, value = FALSE, icon_false, icon_true, ...)
+icon_toggler(
+  ...,
+  inputId,
+  value = FALSE,
+  icon_false,
+  icon_true,
+  icon_class = NULL,
+  pre = "="
+)
 }
 \arguments{
-\item{inputId}{\code{[string]}}
+\item{...}{additional html attributes or content}
 
-\item{value}{\code{[logical]}  Must have an exact length of \code{1}.  Defaults to \code{FALSE}}
+\item{inputId}{\code{[string]} shiny input id}
 
-\item{icon_false}{\code{[string]}}
+\item{value}{\code{[logical]} Is the icon toggler 'on' or 'off'?  Must have an exact length of \code{1}.  Defaults to \code{FALSE}}
 
-\item{icon_true}{\code{[string]}}
+\item{icon_false}{\code{[string]} the 'off' icon}
+
+\item{icon_true}{\code{[string]} the 'on' icon}
 }
 \value{
 \code{icon_toggler}: \code{[html]}
@@ -26,4 +36,32 @@ Create an icon toggler.
  icon_true = 'folder-open-outline')
  icon_toggler(inputId = 'myid', value = TRUE, icon_false = 'folder-outline',
  icon_true = 'folder-open-outline', class = 'icon-sm')
+
+ if(interactive()){
+ library("shiny")
+ library("ShinyReboot")
+ library("bslib")
+ bs_global_theme()
+ ui <- fluidPage(
+ bs_theme_dependencies(theme = bs_global_get()),
+
+ tags$h1("Icon Toggle"),
+ flexRow(class='mdi-md align-items-center text-center',div(icon_mdi('chevron-right',class='pr-0 mr-0')),icon_toggler('myid',value=TRUE,icon_false = 'folder-outline',icon_true = 'folder-open-outline',class='icon')),
+ actionButton('close','Close Folder'),
+ verbatimTextOutput('res')
+ )
+
+ server = function(input, output, session) {
+
+ output$res<-renderText({
+ input$myid
+ })
+ observeEvent(input$close,{
+
+ update_icon_toggler('myid',FALSE)
+ })
+ }
+ shinyApp(ui = ui, server = server)
+ }
+
 }

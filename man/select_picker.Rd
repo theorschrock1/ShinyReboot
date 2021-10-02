@@ -9,9 +9,17 @@ select_picker(
   selected = NULL,
   choices,
   multiple = FALSE,
-  class = "btn btn-sm btn-outline-dark",
+  class = NULL,
   width = "fit",
   content_fn = default_label_fn,
+  picker_size = "sm",
+  picker_style = "secondary",
+  borders = "normal",
+  px = 2,
+  py = 0,
+  rounded = 0,
+  icons = NULL,
+  display_content = NULL,
   ...
 )
 }

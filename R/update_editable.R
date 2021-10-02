@@ -14,7 +14,7 @@ update_editable <- function(inputId, data_id, value = NULL, trigger_edit = FALSE
     assert_string(data_id)
     assert_string(value, null.ok = TRUE)
     assert_logical(trigger_edit, len = 1)
-    if (trigger_edit == FALSE) 
+    if (trigger_edit == FALSE)
         trigger_edit <- NULL
     message = drop_nulls(list(id = data_id, value = value, edit = trigger_edit))
     session$sendInputMessage(inputId, message)

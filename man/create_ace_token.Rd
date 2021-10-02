@@ -2,26 +2,21 @@
 % Please edit documentation in R/create_ace_token.R
 \name{create_ace_token}
 \alias{create_ace_token}
-\title{create an ace token.}
+\title{create an ace token.
+\code{create_ace_token} returns a list for use in the function set_ace_tokens}
 \usage{
 create_ace_token(name, values, escape = TRUE)
 }
 \arguments{
-\item{name}{\code{[string]}}
+\item{name}{\code{[string]} Token name. The token name can add multiple css classes if separated by periods. For example, \code{'identity.date.time'} will add css classes \code{'ace_identity ace_date ace_time'}.}
 
-\item{values}{\code{[character]}}
+\item{values}{\code{[character]} a character vector of string patterns to match.}
 
-\item{escape}{\code{[logical]}  Must have an exact length of \code{1}.  Defaults to \code{TRUE}}
+\item{escape}{\code{[logical]}  should the values be escaped? Must have an exact length of \code{1}.  Defaults to \code{TRUE}.}
 }
 \value{
 \code{create_ace_token}: \code{[list(token=string(),regex=string())]}
 }
 \description{
-create an ace token.
-}
-\examples{
- create_ace_token(name = 'variables', values = c('V(1)', 'V(2)',
- 'V(3)'), escape = TRUE)
- create_ace_token(name = 'functions', values = paste0(c('SUM',
- 'MIN', 'MAX'), followed_by('\\\\(')), escape = FALSE)
+Tokenizing allows for custom sythax highlighting in an ace editor. If a value is matched by the regex pattern, a css class will be added to the div containing the token within the editor.  The css class will be equal to \code{'ace_' + token_name}.
 }

@@ -8,14 +8,15 @@
 #' @return \code{hide_draggable_model}: invisible(NULL)
 #' @rdname show_draggable_model
 #' @export
-hide_draggable_model <- function(inputId = NULL, top = NULL, left = NULL, 
+hide_draggable_model <- function(inputId = NULL, top = NULL, left = NULL,
     session = getDefaultReactiveDomain()) {
     # show or hide a draggable model
-    assert_string(inputId)
-    assert_number(top, null.ok = TRUE)
-    assert_number(left, null.ok = TRUE)
-    session$sendInputMessage(inputId, value = drop_nulls(list(show = FALSE, 
-        top = top, left = left)))
-    invisible(NULL)
+        assert_string(inputId)
+        assert_number(top, null.ok = TRUE)
+        assert_number(left, null.ok = TRUE)
+        message <-drop_nulls(list(show = FALSE, top = top, left = left))
+
+        session$sendInputMessage(inputId,message)
+        invisible(NULL)
     # Returns: invisible(NULL)
 }

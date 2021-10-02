@@ -1,17 +1,17 @@
 #' Create a filter shelf binding.
 
-#' @name filter_shelf
+#' @name data_filters
 #' @param inputId  \code{[string]}
-#' @param ...
-#' @return \code{filter_shelf}: \code{[html]}
+#' @param ... html attributes or children.  Filters should have the class 'data-filter'
+#' @return \code{data_filters}: \code{[html]}
 #' @examples
 
-#'  filter_shelf(inputId = 'sd')
+#'  data_filters(inputId = 'sd')
 #' @export
-filter_shelf <- function(inputId, ...) {
+data_filters <- function(inputId, ...) {
     # Create a filter shelf binding
     assert_string(inputId)
-    div(...) %>% tagAppendAttributes(id = inputId, class = "data-filter") %>% attachDependencies(html_dependency_filter_shelf(), 
+    div(...) %>% tagAppendAttributes(id = inputId, class = "filter-shelf") %>% attachDependencies(html_dependency_filter_shelf(),
         append = TRUE)
     # Returns: \code{[html]}
 }

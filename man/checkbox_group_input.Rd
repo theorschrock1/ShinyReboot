@@ -2,17 +2,20 @@
 % Please edit documentation in R/checkbox_group_input.R
 \name{checkbox_group_input}
 \alias{checkbox_group_input}
-\title{Create a radio slider input.}
+\title{Create a checkbox group input.}
 \usage{
 checkbox_group_input(
   ...,
   inputId,
   label,
   choices,
+  type = "checkbox",
   selected = NULL,
   clear_filter = TRUE,
+  as_dropdown = FALSE,
   search = TRUE,
-  options_dropdown = TRUE
+  options_dropdown = TRUE,
+  variable_id = NULL
 )
 }
 \arguments{
@@ -34,8 +37,9 @@ checkbox_group_input(
 \code{checkbox_group_input}: \code{[html]}
 }
 \description{
-Create a radio slider input.
+Create a checkbox group input.
 }
 \examples{
  checkbox_group_input(inputId = 'myid', label = 'label', choices = names(mtcars))
+ checkbox_group_input(inputId = 'myid', label = 'label', choices = c(TRUE,FALSE),selected=c(T,F),type='radio')
 }

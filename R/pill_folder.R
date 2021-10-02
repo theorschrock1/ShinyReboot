@@ -22,9 +22,21 @@ pill_folder <- function(folder_id, folder_name, pill_items, sortable_group) {
     assert_string(folder_name)
     assert_string(sortable_group)
     assert_list(pill_items)
-    out <- folder_collapse(inputId = paste0(folder_id, "_folder"), label = folder_name, pill_card(inputId = folder_id, 
-        type = "column", sort_ops = sortable_options(name = sortable_group, pull = "clone", put = FALSE, 
-            dragClass = "drag", sort = FALSE), pill_items))
-    div(class = "pill-folder", `data-id` = folder_name, out)
+    ns<-session_ns()
+    out <-
+        pill_folder_collapse(
+            inputId = paste0(folder_id, "_folder"),
+            label = folder_name,
+            pill_card(
+                inputId = ns(folder_id),
+                `data-folder_id`=folder_id,
+                type = "column",
+                sort_ops = pill_shelf_sortable_ops(sortable_group),
+                pill_items
+            )
+        )
+    div(class = paste("folder-wrapper order-0"),
+        `data-id` = folder_id,
+        out)
     # Returns: \code{[html]}
 }

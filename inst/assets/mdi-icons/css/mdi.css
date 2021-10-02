@@ -18,3 +18,21 @@
 .mdi-xl{
  font-size:24px;
 }
+.bd-normal{
+   border:1px solid #a8a8a8 ;
+}
+.bd-thin{
+   border:.5px solid #a8a8a8;
+}
+.icon-btn{
+background-color:transparent;
+outline:none;
+border:none;
+}
+
+.icon-btn:hover{
+padding:.1rem ,.1rem;
+background-color: rgba(0,0,0,.1);
+outline:none;
+border:none;
+}

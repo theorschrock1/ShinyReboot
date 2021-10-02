@@ -1,0 +1,15 @@
+.data-filter .filter-header .icon-btn{
+padding-right:3.5px;
+padding-left:3.5px;
+}
+.data-filter .filter-header .mdi-close{
+    vertical-align:-1px;
+}
+
+.data-filter .filter-header .icon-btn{
+      visibility:hidden;
+    }
+
+    .data-filter:hover .filter-header .icon-btn{
+     visibility:visible;
+ }

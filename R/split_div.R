@@ -11,7 +11,7 @@
 #' @param expandToMin  [logical] Grow initial sizes to minSize Defaults to TRUE
 #' @param gutterSize  [numeric]  Gutter size in pixels. Defaults to 10.
 #' @param  gutterAlign [string]  choices: "start","center" or "end". Gutter alignment between elements. Defaults to 'center'.
-#' @param  gutterAttrs [named_list(htmlTag='character(1)',class=character(1)',text='character(length(innerhtml)-1)')] Useful if gutters should contain labels
+#' @param  gutterAttrs [named_list(gutterTag='character(1)',class=character(1)',innerHtml='length(splitElements)-1)')] Useful if gutters should contain labels
 #' @param snapOffset  [numeric]  Snap to minimum size offset in pixels. Defaults to 30
 #' @param dragInterval  [numeric] Number of pixels to drag. Defaults to 1
 #'                    gutterFunc=NULL, 	#JS Function 		Called to create each gutter element
@@ -21,7 +21,42 @@
 #' @param onDragStart [JS Function] Callback on drag start. Defaults to NULL
 #' @param onDragEnd [JS Function] Callback on drag end. Defaults to NULL
 #' @return \code{split_div}: html
-
+#' @examples
+#'  if(interactive()){
+#'  library("shiny")
+#'  library("ShinyReboot")
+#'  library("bslib")
+#'  bs_global_theme()
+#'  ui <- fluidPage(bs_theme_dependencies(
+#'  theme = bs_global_get()),
+#'
+#'  tags$h1("Split Div: Custom Gutters"),
+#'
+#'  splitCol(inputId='splitCol1',
+#'  style='height:400px;',
+#'  gutterSize = 30,
+#'  div(class='bg-secondary',"div1"),
+#'  div(class='bg-secondary',"div2"),
+#'  div(class='bg-secondary',"div3"),
+#'  gutterAttrs = list(
+#'  gutterTag = 'div',
+#'  class = 'my_gutter',
+#'  innerHtml = list(
+#'  actionButton(inputId='gr2', label='gutter1',class='btn btn-sm btn-dark'),
+#'  actionButton(inputId='gr2', label= 'gutter2',class='btn btn-sm btn-dark')
+#'  )
+#'  )
+#'  ),
+#'
+#'  verbatimTextOutput(outputId = "res1"))
+#'  server <- function(input, output, session) {
+#'
+#'  output$res1=renderPrint({
+#'  input$splitCol1
+#'  })
+#'  }
+#'  shinyApp(ui, server)
+#'  }
 
 #' @export
 split_div=function(...,
@@ -81,6 +116,8 @@ split_div=function(...,
 
   cursor="row-resize"
   if(direction=="horizontal")cursor="col-resize"
+  gutterFunc<-
+    create_gutters(gutterAttrs,n_gutters=l( innerHTML)-1)%or%gutterFunc
   args<-list(sizes=sizes,
              minSize=minSize,
              expandToMin=  expandToMin,
@@ -119,7 +156,6 @@ split_div=function(...,
 
 
   out<-toJSON(list(split_ids=split_ids,options=args), auto_unbox = TRUE, json_verbatim = TRUE)
-
   #as_glue(str_replace_all(out,'"CALLBACK":"CALLBACKS"', cb))
   # tags$script(
   #   type = "application/json",
@@ -131,8 +167,28 @@ split_div=function(...,
    tags$script(
     type = "application/json",
     `data-for` = inputId,
-      out
+      HTML(out)
   )) %>% tagAppendAttributes(class='split-div')
 
  attachDependencies( splitTag,html_dependency_split_JS() )
 }
+
+
+create_gutters=function(gutterAttrs,n_gutters){
+  if(is.null(gutterAttrs))return()
+  assert_names(names(gutterAttrs),must.include=c("gutterTag","class","innerHtml"))
+  if(length(gutterAttrs$innerHtml)!=n_gutters){
+    g_stop("Number of gutter text attributes must equal {n_gutters}, not {length(gutterAttrs$innerHtml)}")
+  }
+  assert_character(gutterAttrs$class,len=1)
+  assert_character(gutterAttrs$gutterTag,len=1)
+  gutter_classes=paste("gutter gutter-${direction}",gutterAttrs$class)
+  text=unlist(lapply(gutterAttrs$innerHtml,as.character))
+  gutter_text=toJSON(c("",text))
+
+    gutterFunc=glue("function(index, direction){gutterText=&gutter_text&;const gutter = document.createElement('&gutterAttrs$gutterTag&');gutter.className = `&gutter_classes&`;$(gutter).html(gutterText[index]);return gutter;}",.open="&",.close="&")
+    gutterFunc
+}
+
+
+

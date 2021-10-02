@@ -9,9 +9,9 @@ sortableDiv(..., inputId, options = sortable_options())
 \arguments{
 \item{...}{sortable HTML elements.  Each element should have a unqiue `data-id` attribute.}
 
-\item{inputId}{[string]}
+\item{inputId}{\code{[string]}}
 
-\item{options}{[character]  Should be a sortable_options call. See \code{?sortable_options} for details.}
+\item{options}{\code{[class('sortable_options')]}  Should be the output of a sortable_options call. See \code{?sortable_options} for details.}
 }
 \value{
 \code{sortableDiv}: HTML

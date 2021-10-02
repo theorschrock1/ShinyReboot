@@ -45,4 +45,7 @@ test_that("html2R", {
   expect_snapshot(html2R(
     "<form class=\"form-signin\">\n  <h1 class=\"h3 mb-3 font-weight-normal\">Please sign in</h1>\n  <label for=\"inputEmail\" class=\"sr-only\">Email address</label>\n  <input type=\"email\" id=\"inputEmail\" class=\"form-control\" placeholder=\"Email address\" required autofocus>\n  <label for=\"inputPassword\" class=\"sr-only\">Password</label>\n  <input type=\"password\" id=\"inputPassword\" class=\"form-control\" placeholder=\"Password\" required>\n  <div class=\"checkbox mb-3\">\n  <label>\n  <input type=\"checkbox\" value=\"remember-me\"> Remember me\n</label>\n  </div>\n  <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Sign in</button>\n  <p class=\"mt-5 mb-3 text-muted\">2017-2020</p>\n  </form>"),
   cran = TRUE)
+  expect_snapshot(html2R(
+    "<div id='one' class='robot' data-dropdown_letters='1'>dsfssI</div>"),
+    cran = TRUE)
 })

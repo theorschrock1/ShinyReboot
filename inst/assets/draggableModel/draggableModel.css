@@ -1,0 +1,8 @@
+.draggableModel{
+    position:absolute;
+    z-index:2000;
+}
+
+.draggableModel .drag-handle{
+  cursor:move;
+}

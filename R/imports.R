@@ -11,6 +11,11 @@
 #' @import data.table
 #' @import R6
 #' @import openssl
+#' @import shinyAce
+#' @import zeallot
+#' @import scales
+#' @import paletteer
+#' @import SDT
 
 #' @export
 undisplay <- function(tag) {
@@ -47,15 +52,12 @@ display <- function(tag) {
 #' @export
 menu_divider=function(type){
   assert_choice(type,c("-","|"))
-  class=char_approxfun(c("-","|"),c("dropdown-divider","separator"))(type)
+  class=chr_approx(c("-","|"),c("dropdown-divider","separator"))(type)
   div(class=class)
 }
 #' @export
 add_dividers=function(...,type){
-  paste2 <- function(x, y, sep = "") paste(x, y, sep = sep)
-  content<-list(...) %>% lapply(as_glue)
-  seps=rep(as_glue(menu_divider(type)),(length(content)-1))
-  HTML(reduce2(content,seps,paste2))
+  weave(list(...),list(menu_divider(type)))
 }
 
 #' @export
