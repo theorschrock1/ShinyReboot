@@ -10,9 +10,7 @@ License: What license is it under?
 Encoding: UTF-8
 LazyData: true
 Imports: 
-    sUtils,
     shiny,
-    exprTools,
     htmltools,
     checkmate,
     rlang,
@@ -25,8 +23,11 @@ Imports:
     shinyAce,
     zeallot,
     scales,
-    paletteer,
-    SDT
+    paletteer
+Remotes:
+    theorschrock1/sUtils,
+    theorschrock1/SDT,
+    theorschrock1/exprTools
 RoxygenNote: 7.1.1
 Suggests: 
     testthat
