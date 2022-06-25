@@ -257,9 +257,9 @@
       div(id = "carouselExampleIndicators", class = "carousel slide", 
           `data-ride` = "carousel", tags$ol(class = "carousel-indicators", 
               tags$li(`data-target` = "#carouselExampleIndicators", 
-                  `slide-to` = "0", class = "active"), tags$li(`data-target` = "#carouselExampleIndicators", 
-                  `slide-to` = "1"), tags$li(`data-target` = "#carouselExampleIndicators", 
-                  `slide-to` = "2")), div(class = "carousel-inner", 
+                  `data-slide-to` = "0", class = "active"), tags$li(`data-target` = "#carouselExampleIndicators", 
+                  `data-slide-to` = "1"), tags$li(`data-target` = "#carouselExampleIndicators", 
+                  `data-slide-to` = "2")), div(class = "carousel-inner", 
               div(class = "carousel-item active", tags$img(src = "...", 
                   class = "d-block w-100", alt = "...")), div(class = "carousel-item", 
                   tags$img(src = "...", class = "d-block w-100", alt = "...")), 
@@ -314,4 +314,18 @@
     Output
       div(id = "one", class = "robot", `data-dropdown_letters` = "1", 
           "dsfssI")
+
+---
+
+    Code
+      html2R(
+        "<p>\n  <a class=\"btn btn-primary\" data-bs-toggle=\"collapse\" href=\"#collapseExample\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseExample\">\n    Link with href\n  </a>\n  <button class=\"btn btn-primary\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseExample\" aria-expanded=\"false\" aria-controls=\"collapseExample\">\n    Button with data-bs-target\n  </button>\n</p>\n<div class=\"collapse\" id=\"collapseExample\">\n  <div class=\"card card-body\">\n    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.\n  </div>\n</div>")
+    Output
+      tagList(tags$p(tags$a(class = "btn btn-primary", `data-bs-toggle` = "collapse", 
+          href = "#collapseExample", role = "button", `aria-expanded` = "false", 
+          `aria-controls` = "collapseExample", "Link with href"), tags$button(class = "btn btn-primary", 
+          type = "button", `data-bs-toggle` = "collapse", `data-bs-target` = "#collapseExample", 
+          `aria-expanded` = "false", `aria-controls` = "collapseExample", 
+          "Button with data-bs-target")), div(class = "collapse", id = "collapseExample", 
+          div(class = "card card-body", "Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.")))
 
