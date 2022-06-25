@@ -329,3 +329,10 @@
           "Button with data-bs-target")), div(class = "collapse", id = "collapseExample", 
           div(class = "card card-body", "Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.")))
 
+---
+
+    Code
+      html2R("<use xlink:href=\"#bootstrap\"/>")
+    Output
+      tags$use(`xlink:href` = "#bootstrap")
+

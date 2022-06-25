@@ -17,6 +17,7 @@
 #' @import paletteer
 #' @import SDT
 #' @import clipr
+#' @import formatR
 
 #' @export
 undisplay <- function(tag) {

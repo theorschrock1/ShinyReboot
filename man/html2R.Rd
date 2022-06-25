@@ -4,7 +4,13 @@
 \alias{html2R}
 \title{Generate R code from raw html.}
 \usage{
-html2R(x, try_parsing = TRUE, silent_eval = TRUE)
+html2R(
+  x,
+  try_parsing = TRUE,
+  silent_eval = TRUE,
+  from_clip = FALSE,
+  write_to_clipboard = is_interactive()
+)
 }
 \arguments{
 \item{x}{[character]  Must have an exact length of 1.}

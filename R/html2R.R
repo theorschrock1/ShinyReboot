@@ -77,6 +77,17 @@ html2R<-function(x, try_parsing = TRUE,silent_eval=TRUE,from_clip=FALSE,write_to
     }
   }
 
+
+  colon = ""
+  while (!is.na(colon)) {
+    colon  <- str_extract(x, "\\w+\\:\\w+=")
+    if (!is.na(colon )) {
+      x = str_replace(x, "\\w+\\:\\w+=", "{colon}")
+      colon = paste0("`", str_remove(colon , "="), "`=")
+      x <- glue(x)
+    }
+  }
+
   x=str_remove_all(x,'tags\\$spantext\\(') %>%str_remove_all(',spantextend\\)')
 
 
@@ -93,8 +104,11 @@ html2R<-function(x, try_parsing = TRUE,silent_eval=TRUE,from_clip=FALSE,write_to
 
 
   x = str_replace_all(x, "\\)" %followed_by% "\\w", "),")
-  if(write_to_clipboard==TRUE)
+  if(write_to_clipboard==TRUE){
     write_clip(paste0("tagList(",x,")"))
+   out<-tidy_source()
+   write_clip(out$text.tidy)
+  }
   if (try_parsing == FALSE)
     return(as_glue(paste0("tagList(",x,")")))
   out = try(parse_expr(x), silent = TRUE)
@@ -107,5 +121,4 @@ html2R<-function(x, try_parsing = TRUE,silent_eval=TRUE,from_clip=FALSE,write_to
   out
   # Returns: R code
 }
-
 
