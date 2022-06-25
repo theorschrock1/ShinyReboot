@@ -16,6 +16,7 @@
 #' @import scales
 #' @import paletteer
 #' @import SDT
+#' @import clipr
 
 #' @export
 undisplay <- function(tag) {

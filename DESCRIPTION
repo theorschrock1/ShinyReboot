@@ -1,7 +1,7 @@
 Package: ShinyReboot
 Type: Package
 Title: A shiny UX reboot
-Version: 0.1.1.9058
+Version: 0.1.1.9059
 Author: Theo Schrock
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: More about what it does (maybe more than one line)
@@ -26,7 +26,8 @@ Imports:
     paletteer,
     sUtils,
     SDT,
-    exprTools
+    exprTools,
+    clipr
 Remotes:
     theorschrock1/sUtils,
     theorschrock1/SDT,

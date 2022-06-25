@@ -12,7 +12,9 @@
 #'  html2R(x)
 
 #' @export
-html2R<-function(x, try_parsing = TRUE,silent_eval=TRUE) {
+html2R<-function(x, try_parsing = TRUE,silent_eval=TRUE,from_clip=FALSE,write_to_clipboard=is_interactive()) {
+  if(from_clip==T)
+    x=glue_collapse(read_clip(),"")
   # Generate R code from raw html
   assert_character(x, len = 1)
   assert_logical(try_parsing, len = 1)
@@ -91,14 +93,17 @@ html2R<-function(x, try_parsing = TRUE,silent_eval=TRUE) {
 
 
   x = str_replace_all(x, "\\)" %followed_by% "\\w", "),")
+  if(write_to_clipboard==TRUE)
+    write_clip(paste0("tagList(",x,")"))
   if (try_parsing == FALSE)
-    return(as_glue(x))
+    return(as_glue(paste0("tagList(",x,")")))
   out = try(parse_expr(x), silent = TRUE)
   if (is_error(out))
     out<-parse_expr(paste0("tagList(",x,")"))
   if (silent_eval == FALSE)
     return(out)
   tryeval<-eval(out)
+
   out
   # Returns: R code
 }
