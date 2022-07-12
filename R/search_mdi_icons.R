@@ -12,7 +12,8 @@ search_mdi_icons <- function(pattern) {
     # Search the material icon list
     require(xml2)
     assert_character(pattern, len = 1)
-    me <- read_html("html/mdi.html")
+    system.file(package = "ShinyReboot")
+    me <- system.file('assets/mdi-icons/mdi.html',package = "ShinyReboot")
     allICons <- xml_find_all(me, "//i") %>% xml_attr("class")
     allICons[grepl(pattern, allICons)]
     # Returns: [character]

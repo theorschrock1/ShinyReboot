@@ -8,7 +8,10 @@
 #' @return \code{pill_shelf}: \code{[html]}
 #' @examples
 #'  if(interactive()){
-#'  sDevTools::clear_env_load_all()
+#'  library('ggplot2')
+#'  library("shiny")
+#'  library("ShinyReboot")
+#'  library("bslib")
 #'
 #'  bs_global_theme()
 #'  ui <- fluidPage(

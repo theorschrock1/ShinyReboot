@@ -24,7 +24,7 @@
 #'  tags$h1("Data DropDown"),
 #'  icon_mdi('pencil'),
 #'  flexCol(class='w-50',
-#'  add_editable_class(inputId='variable_rename',editable_class = 'pill-label'),
+#'  add_editable_class(inputId='variable_rename',editable_class = '.pill-label'),
 #'  pill_card(inputId ="nav_dimensions",
 #'  type='column',
 #'  sort_ops = sortable_options(
@@ -66,7 +66,7 @@
 #'  options= c('duration','distance','mass','speed'))) ,
 #'  inputId='myid',
 #'  handle_class = 'dropdown-handle',
-#'  target_class='pill-item')),
+#'  target='pill-item')),
 #'  verbatimTextOutput('res')
 #'
 #'  )

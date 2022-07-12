@@ -4,11 +4,14 @@
 #' @return \code{materialIconGallery}: [NULL]
 #' @examples
 
-#'  materialIconGallery() 
+#'  materialIconGallery()
 
 #' @export
 materialIconGallery <- function() {
     # View the material design icon library
-    browseURL("https://cdn.materialdesignicons.com/5.4.55/")
+
+  htmlFile<-system.file('assets/mdi-icons/preview.html',package = "ShinyReboot")
+  viewer <- getOption("viewer")
+  viewer(htmlFile)
     # Returns: [NULL]
 }

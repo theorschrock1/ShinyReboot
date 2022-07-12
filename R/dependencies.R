@@ -20,6 +20,7 @@ html_dependency_rebootJS <- function() {
     all_files = FALSE
   )
 }
+
 #' @export
 html_dependency_filter_shelf <- function() {
   htmltools::htmlDependency(
