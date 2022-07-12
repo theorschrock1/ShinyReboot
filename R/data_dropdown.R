@@ -84,7 +84,7 @@
 #'  print(input$myid)
 #'  })
 #'  observe({
-#'  print(input$myid_edit)
+#'  print(input$myid_action_edit)
 #'  })
 #'  }
 #'  shinyApp(ui = ui, server = server)

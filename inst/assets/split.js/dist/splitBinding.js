@@ -69,4 +69,4 @@ $.extend(splitBinding, {
 });
 
 Shiny.inputBindings.register(splitBinding, "shiny.split-div");
-document.getElement
+
