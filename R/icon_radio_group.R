@@ -16,7 +16,7 @@
 #'  'Sort ascending', 'Sort descending'))
 
 #' @export
-icon_radio_group <- function(inputId, options, icon_name, tooltip, class = "", tooltip_placement = "top") {
+icon_radio_group_bs4 <- function(inputId, options, icon_name, tooltip, class = "", tooltip_placement = "top") {
     # Create an icon button group
     assert_character(inputId, len = 1)
     assert_character(icon_name)
@@ -30,3 +30,22 @@ icon_radio_group <- function(inputId, options, icon_name, tooltip, class = "", t
    attachDependencies( outTag, html_dependency_material_icons())
     # Returns: [HTML]
 }
+#' @export
+icon_radio_group<-
+  function (inputId, options, icon_name, tooltip, class = "",
+            tooltip_placement = "top",size='sm')
+  {
+    assert_character(inputId, len = 1)
+    assert_character(icon_name)
+    assert_character(tooltip, len = length(icon_name))
+    assert_character(class)
+    assert_character(tooltip_placement, len = 1)
+    inner = expr_glue(tags$label(`data-bs-toggle` = "tooltip",
+                                 title = "{tooltip}", class = "btn btn-{size} menu-item",
+                                 tags$input(type = "radio", name = "{inputId}",class='btn-check',
+                                            id = "{options}"), tags$span(class = "mdi mdi-{icon_name} menu-icons {class}"))) %>%
+      lapply(eval)
+    outTag <- div(id = inputId, class = "btn-group-toggle ao-radio-button-grp",
+                  inner)
+    attachDependencies(outTag, html_dependency_material_icons())
+  }
