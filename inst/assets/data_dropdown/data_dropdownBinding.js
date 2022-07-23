@@ -113,7 +113,7 @@ $.extend(data_dropdownBinding, {
         if(isCheckBox.test(d)){
             let value=$this.data(d);
             let inp =$(`input[name='${d}']`);
-
+            console.log('here');
             inp.prop('checked',value);
             $(el).data(d,value);
             if(value=='NA'){
