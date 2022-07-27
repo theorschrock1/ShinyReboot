@@ -167,6 +167,7 @@ $.extend(data_dropdownBinding, {
 
 
       $(el).data('id',$this.attr('id'));
+      $(el).data('attrs',data);
       $(el).addClass("show");
 
       return false;
