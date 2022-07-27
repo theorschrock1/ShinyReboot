@@ -155,10 +155,13 @@ margin-bottom:.2rem;
     margin-bottom:.25rem ;
 }
 
+.pill-document {
+        background-color:#f5a442 ;
+    }
+
 .pill-measure {
         background-color:#5c7dc4 ;
     }
-
 
 .pill-dimension {
         background-color:#36bf81 ;
@@ -229,6 +232,19 @@ margin-bottom:.2rem;
     background-color: inherit;
     box-shadow: none;
     color:#333333;
+    border-radius: 50rem;
+}
+
+.nav-card   .pill-card-column   .shelf   .pill-document{
+    background-color: inherit;
+    box-shadow: none;
+    color:#333333;
+    border-radius: 50rem;
+}
+
+.nav-card  .pill-card-column  .shelf  .pill-document .pill-area:hover{
+    background-color:#f5a442;
+    color:#fff;
     border-radius: 50rem;
 }
 
@@ -337,10 +353,16 @@ display:none;
 .pill-folder .pill-card{
   margin-left: 1rem;
 }
+.pill-document.drag{
+      background-color:rgba(245, 164, 66, 0.48);
+
+}
 .pill-measure.drag{
       background-color:rgba(63, 80, 191, 0.48);
 
 }
+
+
 .pill-dimension.drag{
       background-color:rgba(63, 191, 104, 0.48);
 
@@ -350,6 +372,12 @@ display:none;
 .nav-card  .pill-card-column  .shelf  .pill-item.drag .pill-area{
         background-color:transparent;
 }
+
+
+.nav-card  .pill-card-column   .shelf .pill-document.drag{
+      background-color:rgba(245, 164, 66, 0.48);
+}
+
 .nav-card  .pill-card-column   .shelf .pill-measure.drag{
       background-color:rgba(63, 80, 191, 0.48);
 }
@@ -368,6 +396,12 @@ display:none;
 
 .pill-selected.pill-measure .pill-area {
     background-color:#95abdf;
+    color:#fff;
+    border-radius: 50rem;
+}
+
+.pill-selected.pill-document .pill-area {
+    background-color:#f5a442;
     color:#fff;
     border-radius: 50rem;
 }

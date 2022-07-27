@@ -206,7 +206,7 @@ $.extend(data_dropdownBinding, {
     });
     $(".dropdown-item.action-item").on('click', function(e){
         let actionId=this.id;
-        let elid=$(this).parents('.context-menu').data('id');
+        let elid=$(this).parents('.context-menu').data();
         let menuId=$(this).parents('.context-menu').attr('id');
         console.log(elid);
         let inputId=menuId+"_"+actionId;
