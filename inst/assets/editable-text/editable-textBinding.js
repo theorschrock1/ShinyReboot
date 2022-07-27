@@ -27,6 +27,7 @@ $.extend(editableTextBinding, {
    console.log(elid);
    let out={};
    out['id']=$(elid).data('id');
+   out['data']=$(elid).data();
    out['value']=$(elid).html();
    return  out
   },
