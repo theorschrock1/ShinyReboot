@@ -83,7 +83,7 @@ $.extend(data_dropdownBinding, {
       var wd=this.offsetWidth;
       }
        //console.log($this);
-      let data=$this.data();
+      var data=$this.data();
       let datanames=Object.getOwnPropertyNames(data);
       //console.log(data);
       datanames.map(function(d,i){
@@ -206,11 +206,11 @@ $.extend(data_dropdownBinding, {
     });
     $(".dropdown-item.action-item").on('click', function(e){
         let actionId=this.id;
-        let elid=$(this).parents('.context-menu').data();
+        let elid=$(this).parents('.context-menu').data('id');
         let menuId=$(this).parents('.context-menu').attr('id');
         console.log(elid);
         let inputId=menuId+"_"+actionId;
-        Shiny.setInputValue(inputId,elid,{priority:'event'});
+        Shiny.setInputValue(inputId,data,{priority:'event'});
         $(".context-menu").removeClass('show');
         $(".submenu").removeClass('show');
     });
