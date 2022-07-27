@@ -26,8 +26,9 @@ $.extend(editableTextBinding, {
    let elid= `${this.dataClass}[data-id="${dataid}"]`
    console.log(elid);
    let out={};
+   var id=$(elid).data('id');
    out['id']=$(elid).data('id');
-   out['data']=$(elid).data();
+   out['data']=$(`#${id}`).data();
    out['value']=$(elid).html();
    return  out
   },
