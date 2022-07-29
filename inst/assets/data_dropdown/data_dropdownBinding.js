@@ -209,7 +209,7 @@ $.extend(data_dropdownBinding, {
         let actionId=this.id;
         let data=$(this).parents('.context-menu').data('attrs');
         let menuId=$(this).parents('.context-menu').attr('id');
-        console.log(elid);
+
         let inputId=menuId+"_"+actionId;
         Shiny.setInputValue(inputId,data,{priority:'event'});
         $(".context-menu").removeClass('show');
