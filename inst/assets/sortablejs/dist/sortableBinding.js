@@ -84,6 +84,8 @@ $.extend(sortableBinding, {
                      childList:true,
                      attributeFilter: ['data-callback'] };
     observer.observe(el,config );
+
+
     $(el).on("updateInput.sortableBinding", function(e) {
       callback();
     });
@@ -190,7 +192,7 @@ $.extend(sortableBinding, {
   if (data.hasOwnProperty('content')){
      //console.log(data.content);
      $(el).html(data.content);
-     this.setValue(el,this.getValue(el));
+     //this.setValue(el,this.getValue(el));
      $(el).trigger('updateInput');
   }
   },

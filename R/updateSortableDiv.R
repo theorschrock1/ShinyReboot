@@ -44,7 +44,7 @@ updateSortableDiv<- function(..., inputId,content=NULL,order = NULL,append=NULL,
   if(clear){
     content=""
   }
-  print(content)
+  #print(content)
   message <- drop_nulls(
     list(
       order =  order,
