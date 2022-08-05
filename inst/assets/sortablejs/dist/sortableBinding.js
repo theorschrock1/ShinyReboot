@@ -213,8 +213,8 @@ $.extend(sortableBinding, {
     config = JSON.parse(configEl.html());
 
     if(isDict(config.group.put)){
-     var classNames=config.group.put.class_types
-
+     var classNames=config.group.put.class_types;
+    console.log(classNames);
      config.group.put =function(to,from,item) {
 
      if (classNames.some(className =>item.classList.contains(className))) {
