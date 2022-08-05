@@ -214,7 +214,9 @@ $.extend(sortableBinding, {
 
     if(isDict(config.group.put)){
      var classNames=config.group.put.class_types;
-    console.log(classNames);
+     if(Array.isArray(classNames)==false){
+        classNames=Array.of(classNames);
+     }
      config.group.put =function(to,from,item) {
 
      if (classNames.some(className =>item.classList.contains(className))) {
